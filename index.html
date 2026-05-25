@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YorunoBrowser - The Ultimate One-Handed Browser & File Manager for Night Owls</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        night: {
+                            50: '#f4f4f6',
+                            100: '#e9e9f0',
+                            200: '#d7d7e3',
+                            300: '#babacb',
+                            400: '#9797ad',
+                            500: '#797992',
+                            600: '#606078',
+                            700: '#4d4d61',
+                            800: '#3e3e50',
+                            900: '#22222d',
+                            950: '#0b0b10',
+                        },
+                        neon: {
+                            purple: '#c084fc',
+                            blue: '#38bdf8',
+                            pink: '#f472b6'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(192, 132, 252, 0.2), 0 0 10px rgba(192, 132, 252, 0.2)' },
+                            '100%': { boxShadow: '0 0 15px rgba(192, 132, 252, 0.6), 0 0 20px rgba(192, 132, 252, 0.4)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b0b10;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3e3e50;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #606078;
+        }
+
+        /* Neon Glassmorphism */
+        .glass {
+            background: rgba(15, 15, 25, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-premium {
+            background: linear-gradient(135deg, rgba(192, 132, 252, 0.1) 0%, rgba(56, 189, 248, 0.05) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(192, 132, 252, 0.2);
+        }
+
+        /* Warning Styles */
+        .warning {
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 10px;
+            margin-top: 0.5rem;
+        }
+
+        .secretText {
+            display: inline-block;
+            font-size: 9px;
+            color: #ffffff00;
+            /* Secret text visible upon selection */
+            margin-left: 0.5rem;
+        }
+
+        /* Navbar Glass Effect without white border */
+        .navbar-glass {
+            background: rgba(11, 11, 16, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Icon Showcase Fade Animation */
+        #main-icon-img {
+            transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-night-950 text-slate-100 font-sans overflow-x-hidden antialiased">
+
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none -z-10">
+    </div>
+    <div
+        class="fixed bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10">
+    </div>
+    <div
+        class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-fuchsia-600/5 rounded-full blur-[150px] pointer-events-none -z-10">
+    </div>
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform">
+                    <i data-lucide="moon" class="w-6 h-6 text-white animate-pulse-slow"></i>
+                </div>
+                <div>
+                    <span
+                        class="font-bold text-lg tracking-wider bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">YorunoBrowser</span>
+                    <span class="block text-[10px] text-purple-400 font-semibold tracking-widest uppercase">For iOS
+                        Sideload</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#features" class="hover:text-purple-400 transition-colors">Features</a>
+                <a href="#demo" class="hover:text-purple-400 transition-colors">Interactive Demo</a>
+                <a href="#plans" class="hover:text-purple-400 transition-colors">Pricing Plans</a>
+                <a href="#download" class="hover:text-purple-400 transition-colors">Install</a>
+            </nav>
+
+            <div>
+                <a href="#download"
+                    class="relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-sm font-semibold text-white shadow-lg shadow-purple-600/30 hover:shadow-purple-600/40 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                    <span>Get It Now</span>
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-32 px-4 overflow-hidden">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold tracking-wide">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>The Best One-Handed iOS Browser</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                    Make your night browsing<br>
+                    <span
+                        class="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">More
+                        comfortable & free.</span>
+                </h1>
+
+                <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0">
+                    YorunoBrowser is a premium browser and feature-packed file manager fine-tuned for ultimate
+                    one-handed operation on iOS. Equipped with a powerful ad blocker, universal media downloader, true
+                    forced dark mode, and a clever stealth sensor to protect your privacy instantly.
+                </p>
+
+                <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-2">
+                    <span
+                        class="px-3 py-1.5 rounded-lg bg-night-900/60 border border-night-800 text-xs text-slate-300 flex items-center gap-1.5">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-purple-400"></i> Ad Blocker Included
+                    </span>
+                    <span
+                        class="px-3 py-1.5 rounded-lg bg-night-900/60 border border-night-800 text-xs text-slate-300 flex items-center gap-1.5">
+                        <i data-lucide="download-cloud" class="w-4 h-4 text-cyan-400"></i> HLS/MP4 Downloader
+                    </span>
+                    <span
+                        class="px-3 py-1.5 rounded-lg bg-night-900/60 border border-night-800 text-xs text-slate-300 flex items-center gap-1.5">
+                        <i data-lucide="eye-off" class="w-4 h-4 text-pink-400"></i> Instant Proximity Stealth
+                    </span>
+                    <span
+                        class="px-3 py-1.5 rounded-lg bg-night-900/60 border border-night-800 text-xs text-slate-300 flex items-center gap-1.5">
+                        <i data-lucide="zap" class="w-4 h-4 text-yellow-400"></i> Fast File Converter
+                    </span>
+                    <span
+                        class="px-3 py-1.5 rounded-lg bg-night-900/60 border border-night-800 text-xs text-slate-300 flex items-center gap-1.5">
+                        <i data-lucide="moon" class="w-4 h-4 text-purple-400"></i> Ultimate Dark Mode
+                    </span>
+                    <span
+                        class="px-3 py-1.5 rounded-lg bg-night-900/60 border border-night-800 text-xs text-slate-300 flex items-center gap-1.5">
+                        <i data-lucide="more-horizontal" class="w-4 h-4 text-slate-500"></i> Powerful File Viewer
+                    </span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#download"
+                        class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-center shadow-lg shadow-purple-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        <span>Install via AltStore</span>
+                    </a>
+                    <a href="#demo"
+                        class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-night-900 hover:bg-night-800 border border-night-800 text-slate-300 font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>Try Interactive Demo</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 flex justify-center relative">
+                <div class="absolute w-72 h-72 rounded-full bg-purple-500/20 blur-3xl -top-10 -z-10 animate-pulse-slow">
+                </div>
+
+                <div
+                    class="relative w-[280px] h-[580px] bg-black rounded-[48px] p-3 shadow-2xl border-4 border-slate-800 animate-float">
+                    <div
+                        class="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-30 flex items-center justify-center">
+                        <div class="w-3 h-3 bg-slate-900 rounded-full ml-auto mr-4"></div>
+                    </div>
+
+                    <div
+                        class="w-full h-full bg-night-950 rounded-[38px] overflow-hidden relative flex flex-col justify-between border border-slate-900 text-[11px]">
+
+                        <div class="h-9 px-6 pt-2 flex justify-between items-center text-[10px] text-slate-400 z-20">
+                            <span>9:41</span>
+                            <div class="flex items-center gap-1.5">
+                                <i data-lucide="signal" class="w-3 h-3"></i>
+                                <i data-lucide="wifi" class="w-3 h-3"></i>
+                                <i data-lucide="battery" class="w-3.5 h-3.5"></i>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 px-4 py-2 flex flex-col gap-3 overflow-y-auto scrollbar-none relative"
+                            id="mock-screen">
+
+                            <div class="p-3 rounded-2xl bg-night-900/80 border border-purple-500/20 space-y-1">
+                                <div class="flex items-center justify-between text-[10px]">
+                                    <span class="text-purple-400 font-bold flex items-center gap-1">
+                                        <i data-lucide="shield-check" class="w-3 h-3"></i> Adblocker Active
+                                    </span>
+                                    <span class="text-slate-500">23 Ads Blocked</span>
+                                </div>
+                                <p class="text-slate-300 font-semibold text-xs leading-tight">Clean browsing experience.
+                                    Video ads are skipped automatically!</p>
+                            </div>
+
+                            <div class="rounded-2xl overflow-hidden bg-black border border-slate-800 relative group">
+                                <div
+                                    class="aspect-video bg-gradient-to-br from-indigo-950 to-purple-950 flex items-center justify-center relative">
+                                    <i data-lucide="play"
+                                        class="w-8 h-8 text-white/80 p-1.5 bg-white/10 rounded-full backdrop-blur"></i>
+                                    <span
+                                        class="absolute bottom-1 right-2 bg-black/70 px-1 py-0.5 rounded text-[8px] text-slate-300">14:20</span>
+                                </div>
+                                <div class="p-2 space-y-1 bg-night-900">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-bold text-slate-200">Sample_Video.mp4</span>
+                                        <span class="text-[8px] bg-purple-500/20 text-purple-300 px-1 rounded">HLS/m3u8
+                                            Ready</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 pt-1 text-[9px] text-slate-400">
+                                        <button class="flex items-center gap-0.5 text-purple-400"><i
+                                                data-lucide="download" class="w-3 h-3"></i> Save</button>
+                                        <button class="flex items-center gap-0.5"><i data-lucide="zap"
+                                                class="w-3 h-3"></i> Audio Pitch</button>
+                                        <button class="ml-auto flex items-center gap-0.5 text-pink-400"><i
+                                                data-lucide="heart" class="w-3 h-3"></i> Like</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="p-3 rounded-2xl bg-night-900/80 border border-slate-800 flex items-center justify-between">
+                                <div class="space-y-0.5">
+                                    <p class="font-bold text-slate-200">Forced Dark Mode</p>
+                                    <p class="text-[9px] text-slate-400">Zero blinding white frames while loading</p>
+                                </div>
+                                <div class="w-8 h-4 bg-purple-600 rounded-full p-0.5 flex items-center justify-end">
+                                    <div class="w-3 h-3 bg-white rounded-full"></div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="p-3 rounded-2xl bg-purple-950/20 border border-purple-500/10 space-y-1 text-center">
+                                <p class="text-purple-300 font-bold">Thumb-Friendly UI Design</p>
+                                <p class="text-[9px] text-slate-400 leading-normal">All navigation controls are placed
+                                    at the bottom. Use intuitive gestures to surf flawlessly with one thumb, even in a
+                                    crowded subway train.</p>
+                            </div>
+
+                        </div>
+
+                        <div class="p-3 bg-night-900/90 border-t border-slate-800/80 space-y-2 z-10">
+                            <div
+                                class="w-full bg-night-950 rounded-full px-3 py-1.5 flex items-center justify-between border border-slate-800 text-slate-400">
+                                <i data-lucide="lock" class="w-3 h-3 text-emerald-400"></i>
+                                <span class="font-mono text-[9px]">yoruno.app/explore</span>
+                                <i data-lucide="rotate-cw" class="w-3 h-3"></i>
+                            </div>
+
+                            <div class="flex items-center justify-between px-2 text-slate-300">
+                                <button class="p-1 hover:text-purple-400"><i data-lucide="chevron-left"
+                                        class="w-4 h-4"></i></button>
+                                <button class="p-1 hover:text-purple-400"><i data-lucide="chevron-right"
+                                        class="w-4 h-4"></i></button>
+                                <button
+                                    class="p-1.5 bg-gradient-to-tr from-purple-600 to-indigo-600 text-white rounded-xl shadow-lg shadow-purple-600/30"><i
+                                        data-lucide="arrow-down-to-line" class="w-4 h-4"></i></button>
+                                <button class="p-1 hover:text-purple-400"><i data-lucide="folder"
+                                        class="w-4 h-4"></i></button>
+                                <button class="p-1 hover:text-purple-400"><i data-lucide="menu"
+                                        class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="features" class="py-20 bg-night-900/40 relative">
+        <div class="max-w-6xl mx-auto px-4">
+
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                    Why Choose <span
+                        class="bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">YorunoBrowser</span>?
+                </h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">
+                    It is far more than just a browser. It is everything you need to explore and consume media smoothly,
+                    seamlessly, and securely late at night.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div
+                    class="glass p-6 rounded-3xl hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-950/10 transition-all group duration-300">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="navigation" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">One-Handed & Gesture UI</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Every main button and URL bar sits right at the bottom for easy reach. Built-in bottom page
+                        padding lets you scroll past the display edge comfortably. Customize edge-swipes to navigate
+                        backward, forward, or close tabs with effortless gestures.
+                    </p>
+                </div>
+
+                <div
+                    class="glass p-6 rounded-3xl hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-950/10 transition-all group duration-300">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="download-cloud" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">Universal Media Downloader</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Download HLS (m3u8), MP4 videos, PDFs, and batches of images with a single tap.
+                    </p>
+                    <div class="mt-4 space-y-2">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✓
+                                Pornhub</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✓
+                                xvideos</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✓
+                                xhamster</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✓
+                                TokyoMotion</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✓
+                                Niconico</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✓
+                                Most HLS Streams</span>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">↗
+                                YouTube</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">↗
+                                X / Twitter</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md bg-night-900 text-slate-500 border border-slate-800 text-[9px]">External
+                                DL Helper</span>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">✕
+                                Netflix</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">✕
+                                Amazon Prime</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">✕
+                                Disney+</span>
+                            <span
+                                class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">✕
+                                DRM Protected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass p-6 rounded-3xl hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-950/10 transition-all group duration-300">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-pink-500/10 text-pink-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="moon" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">True Forced Dark Mode</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Instantly transform bright white sites into deeply elegant dark themes. Powered by an smart
+                        pre-render engine that blocks blinding white splash screens and avoids unnatural image color
+                        inversions.
+                    </p>
+                </div>
+
+                <div
+                    class="glass p-6 rounded-3xl hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-950/10 transition-all group duration-300">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-yellow-500/10 text-yellow-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">In-App Media Re-encoder</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Convert and fine-tune your downloaded media directly inside the app. Adjust audio pitch, modify
+                        resolution parameters (0.1x to 1.0x), and compress files to optimize local storage.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-1.5">
+                        <span
+                            class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">MP4</span>
+                        <span
+                            class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">MP3</span>
+                        <span
+                            class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">M4A</span>
+                        <span
+                            class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">Resolution
+                            Scale</span>
+                        <span
+                            class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">Pitch
+                            Mod</span>
+                    </div>
+                </div>
+
+                <div
+                    class="glass p-6 rounded-3xl hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-950/10 transition-all group duration-300">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-red-500/10 text-red-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="eye-off" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">Instant Proximity Stealth</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Surfing private stuff when someone suddenly walks into your room? Simply wave your hand over the
+                        front camera sensor to instantly mask the active view and pull up a safe page like Wikipedia.
+                    </p>
+                </div>
+
+                <div
+                    class="glass p-6 rounded-3xl hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-950/10 transition-all group duration-300">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="folder-git-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">Explorer, Grid & YoruTube</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Switch smoothly between a desktop-grade list layout and a highly fluid thumbnail grid. Stream
+                        unencoded raw .ts segments natively with an optimized one-tap video engine.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-1.5">
+                        <span
+                            class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✓
+                            List View</span>
+                        <span
+                            class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✓
+                            Grid View</span>
+                        <span
+                            class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✓
+                            Native .ts Play</span>
+                        <span
+                            class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20">🔜
+                            YoruTube</span>
+                    </div>
+                    <p class="mt-3 text-[10px] text-slate-600 leading-relaxed">If you notice anomalies with .ts
+                        durations, please report the Where / When / What / How details on GitHub or via our form.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center space-y-4 mb-12">
+                <span class="text-purple-400 text-xs font-bold tracking-widest uppercase">INTERACTIVE DEMO</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                    Experience <span class="text-fuchsia-400">YorunoBrowser</span> Live
+                </h2>
+                <p class="text-slate-400 text-sm max-w-lg mx-auto">
+                    Test drive some of our unique core features right inside your current browser web window!
+                </p>
+            </div>
+
+            <div class="glass-premium p-6 md:p-8 rounded-[32px] shadow-2xl relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl pointer-events-none">
+                </div>
+
+                <div class="flex border-b border-slate-800 mb-6">
+                    <button onclick="switchDemo('hide')" id="btn-demo-hide"
+                        class="flex-1 pb-3 text-center text-sm font-bold border-b-2 border-purple-500 text-purple-300 transition-all">
+                        🚀 Proximity Stealth
+                    </button>
+                    <button onclick="switchDemo('dark')" id="btn-demo-dark"
+                        class="flex-1 pb-3 text-center text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition-all">
+                        🌙 Dark Mode Tweak
+                    </button>
+                    <button onclick="switchDemo('player')" id="btn-demo-player"
+                        class="flex-1 pb-3 text-center text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition-all">
+                        🎬 25% Time Skip
+                    </button>
+                </div>
+
+                <div id="demo-hide" class="space-y-6">
+                    <p class="text-slate-300 text-sm leading-relaxed text-center">
+                        Is someone walking into your room out of nowhere? In the mobile app, just cover the top area of
+                        your phone.<br>
+                        Hover or tap the button below to simulate covering the proximity sensor.
+                    </p>
+
+                    <div
+                        class="max-w-sm mx-auto h-64 bg-night-950 rounded-2xl border border-slate-800 overflow-hidden relative flex flex-col justify-between transition-all duration-300 shadow-inner">
+
+                        <div
+                            class="bg-night-900 px-4 py-2 border-b border-slate-800 flex justify-between items-center text-[10px]">
+                            <span class="font-bold text-slate-300" id="screen-title">㊙ Viewing Secret Private
+                                Content...</span>
+                            <span class="text-rose-500 flex items-center gap-1 font-bold animate-pulse"><i
+                                    data-lucide="eye" class="w-3 h-3"></i> PRIVATE</span>
+                        </div>
+
+                        <div class="flex-1 p-4 flex flex-col justify-center items-center text-center space-y-2 transition-all duration-300"
+                            id="private-content">
+                            <div
+                                class="w-16 h-16 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-400 mb-2">
+                                <i data-lucide="lock" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-100 text-base">Super_Secret_Video.mp4</h4>
+                            <p class="text-[11px] text-slate-500">Enjoying top secret media content securely...</p>
+                        </div>
+
+                        <div class="hidden flex-1 p-4 flex flex-col justify-start overflow-y-auto text-left bg-white text-slate-900 transition-all duration-300"
+                            id="fake-content">
+                            <div class="flex items-center gap-2 border-b pb-2 mb-2">
+                                <span class="font-bold text-slate-800 text-sm">WIKIPEDIA</span>
+                                <span class="text-[9px] bg-slate-200 px-1 text-slate-600 rounded">The Free
+                                    Encyclopedia</span>
+                            </div>
+                            <h4 class="font-bold text-lg text-slate-900 mb-1 leading-tight">Information Technology (IT)
+                            </h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">
+                                Information technology (IT) is the set of practices and disciplines concerned with
+                                computing, data management, and processing, serving as the core foundation of modern
+                                engineering...
+                            </p>
+                        </div>
+
+                        <div class="bg-night-900/90 px-4 py-2 border-t border-slate-800 text-[9px] text-slate-500 flex justify-between items-center"
+                            id="screen-footer">
+                            <span>URL: https://secret-contents.xyz/video1</span>
+                            <span class="text-slate-400">Secure Mode Active</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center pt-2">
+                        <button id="trigger-hide" onmouseenter="activateHide()" onmouseleave="deactivateHide()"
+                            ontouchstart="activateHide()" ontouchend="deactivateHide()"
+                            class="px-6 py-4 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-bold text-sm shadow-lg shadow-rose-600/20 active:scale-95 transition-all flex items-center gap-2">
+                            <i data-lucide="hand" class="w-5 h-5 animate-bounce"></i>
+                            <span>Cover Sensor Here (Hover / Tap and Hold)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="demo-dark" class="hidden space-y-6">
+                    <p class="text-slate-300 text-sm leading-relaxed text-center">
+                        Ever opened a web browser in the middle of the night and yelled because of a flashing white
+                        page?<br>
+                        With YorunoBrowser, forced dark mode takes effect before rendering, keeping assets intact
+                        without eerie inversions.
+                    </p>
+
+                    <div class="max-w-sm mx-auto h-64 rounded-2xl overflow-hidden relative flex flex-col justify-between transition-all duration-500 shadow-inner bg-white text-slate-900 border border-slate-200"
+                        id="demo-dark-screen">
+                        <div class="px-4 py-2 flex justify-between items-center text-[10px] border-b border-slate-200"
+                            id="demo-dark-header">
+                            <span class="font-bold text-slate-700">A Regular Informative Blog</span>
+                            <span class="text-slate-400 font-bold">Standard Web</span>
+                        </div>
+
+                        <div class="flex-1 p-4 flex flex-col justify-between" id="demo-dark-body">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-slate-900 text-base" id="demo-dark-title">Blinding White
+                                    Nighttime Content</h4>
+                                <p class="text-[11px] text-slate-600 leading-normal" id="demo-dark-text">
+                                    Standard forced filters usually invert every element on screen, transforming
+                                    standard illustrations into weird and spooky negative colors...
+                                </p>
+                            </div>
+
+                            <div class="my-2 p-2 rounded-xl border flex items-center gap-3 bg-slate-50 border-slate-200"
+                                id="demo-dark-card">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-300 to-orange-400 flex items-center justify-center text-white text-lg">
+                                    🐱
+                                </div>
+                                <div class="text-[10px]">
+                                    <p class="font-bold text-slate-800" id="demo-dark-card-title">Cute Cat Asset Icon
+                                    </p>
+                                    <p class="text-slate-500" id="demo-dark-card-sub">(Should NOT be color-inverted)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center items-center gap-4">
+                        <span class="text-sm font-semibold text-slate-400">Default View (Bright)</span>
+                        <button onclick="toggleDarkModeDemo()"
+                            class="w-14 h-8 bg-slate-700 rounded-full p-1 transition-all flex items-center"
+                            id="demo-dark-switch-btn">
+                            <div class="w-6 h-6 bg-white rounded-full transition-all shadow-md transform"
+                                id="demo-dark-switch-knob"></div>
+                        </button>
+                        <span class="text-sm font-semibold text-purple-400">Yoruno Forced Dark View</span>
+                    </div>
+                </div>
+
+                <div id="demo-player" class="hidden space-y-6">
+                    <p class="text-slate-300 text-sm leading-relaxed text-center">
+                        Ever browsed in bed and struggled to drag the tiny progress slider at the edge with your
+                        thumb?<br>
+                        Our instant quarter-jump keys make skipping through long videos effortless with just one hand.
+                    </p>
+
+                    <div
+                        class="max-w-md mx-auto rounded-2xl overflow-hidden bg-black border border-slate-800 p-4 space-y-4 shadow-xl">
+                        <div
+                            class="aspect-video bg-slate-900 rounded-xl relative flex flex-col justify-between p-3 overflow-hidden">
+                            <div class="absolute top-2 right-2 bg-black/60 px-2 py-1 rounded text-[10px] text-purple-400 font-mono font-bold"
+                                id="player-time">
+                                00:00 / 10:00 (0%)
+                            </div>
+
+                            <div class="flex-1 flex items-center justify-center">
+                                <div class="text-4xl font-extrabold text-white/90 bg-black/40 px-4 py-2 rounded-2xl backdrop-blur-sm"
+                                    id="player-big-percentage">
+                                    0%
+                                </div>
+                            </div>
+
+                            <div class="relative h-8 flex items-center">
+                                <div
+                                    class="absolute left-0 right-0 bg-slate-800 h-1.5 rounded-full overflow-hidden pointer-events-none">
+                                    <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full"
+                                        id="player-progress-bar" style="width: 0%;"></div>
+                                </div>
+                                <input type="range" min="0" max="100" value="0" id="seekbar-input"
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    oninput="setPlayerPercent(+this.value)">
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p class="text-slate-400 text-[10px] text-center font-semibold">Try moving the seek bar
+                                slider track above</p>
+                            <div class="flex flex-col items-center gap-2 min-h-[52px] justify-center">
+                                <button onclick="setPlayerPercent(25)" id="jump25-btn"
+                                    class="flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-sm shadow-lg shadow-purple-600/20 hover:opacity-90 active:scale-95 transition-all">
+                                    <i data-lucide="skip-forward" class="w-4 h-4"></i> Jump to 25%
+                                </button>
+                                <p id="jump25-passed" class="hidden text-xs text-slate-500">Video past 25%. Jump button
+                                    hidden dynamically.</p>
+                            </div>
+                            <div class="flex justify-between text-[11px] text-slate-400 px-1">
+                                <span class="flex items-center gap-1 cursor-pointer hover:text-purple-400"
+                                    onclick="setPlayerPercent(0)"><i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                                    Restart Video</span>
+                                <span class="text-slate-500">Button appears only when position is under 25%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="subscription" class="py-20 bg-night-900/40 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-fuchsia-600/5 rounded-full blur-[150px]">
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center space-y-4 mb-16">
+                <span class="text-fuchsia-400 text-xs font-bold tracking-widest uppercase">PREMIUM EXCLUSIVE</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                    Personalized <span
+                        class="bg-gradient-to-r from-fuchsia-400 to-purple-400 bg-clip-text text-transparent">Icons &
+                        Themes</span>
+                </h2>
+                <p class="text-slate-400 text-sm max-w-2xl mx-auto">
+                    Unlock full custom app icon sets and bespoke accent color layouts with our Premium or Supporter
+                    tiers. Customize your home screen experience to fit your exact style.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <div class="flex flex-col items-center space-y-8">
+                    <div class="relative">
+                        <div class="absolute inset-0 rounded-3xl blur-2xl bg-purple-500/30 scale-125 transition-all duration-700"
+                            id="icon-glow"></div>
+                        <div class="relative w-40 h-40 rounded-3xl overflow-hidden shadow-2xl border-2 border-white/10">
+                            <img src="Icons/YoBr_Icon_nena.png" alt="YorunoBrowser Icon"
+                                class="w-full h-full object-cover" id="main-icon-img">
+                        </div>
+                    </div>
+                    <div class="text-center space-y-1">
+                        <p class="font-bold text-slate-200 text-sm" id="icon-name">nena</p>
+                        <p class="text-xs text-slate-500" id="icon-desc">Default variant theme icon asset</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button onclick="selectIcon(0)"
+                            class="icon-thumb-btn w-14 h-14 rounded-2xl overflow-hidden border-2 border-purple-500 shadow-lg shadow-purple-500/20 transition-all hover:scale-110 active:scale-95"
+                            data-index="0">
+                            <img src="Icons/YoBr_Icon_nena.png" alt="nena" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="selectIcon(1)"
+                            class="icon-thumb-btn w-14 h-14 rounded-2xl overflow-hidden border-2 border-transparent transition-all hover:scale-110 active:scale-95"
+                            data-index="1">
+                            <img src="Icons/YoBr_Icon_nenaBlue.png" alt="nenaBlue" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="selectIcon(2)"
+                            class="icon-thumb-btn w-14 h-14 rounded-2xl overflow-hidden border-2 border-transparent transition-all hover:scale-110 active:scale-95"
+                            data-index="2">
+                            <img src="Icons/YoBr_Icon_nenaClub.png" alt="nenaClub" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="selectIcon(3)"
+                            class="icon-thumb-btn w-14 h-14 rounded-2xl overflow-hidden border-2 border-transparent transition-all hover:scale-110 active:scale-95"
+                            data-index="3">
+                            <img src="Icons/YoBr_Icon_sea001.png" alt="sea001" class="w-full h-full object-cover">
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-slate-500">
+                        <span class="w-1.5 h-1.5 rounded-full bg-fuchsia-400 animate-ping"></span>
+                        <span>Auto-cycling preview loop active</span>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="glass p-6 rounded-3xl space-y-4 hover:border-fuchsia-500/30 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-fuchsia-500/10 flex items-center justify-center">
+                                <i data-lucide="image" class="w-5 h-5 text-fuchsia-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-100">Custom Home Icons</h3>
+                                <span class="text-[10px] text-fuchsia-400 font-semibold">Premium / Supporter Only</span>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Personalize your home screen app display configurations with bespoke icon artwork variants
+                            including nena, nenaBlue, nenaClub, and sea001.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-2 py-1 text-[10px] rounded-lg bg-fuchsia-500/10 text-fuchsia-300 border border-fuchsia-500/20">nena</span>
+                            <span
+                                class="px-2 py-1 text-[10px] rounded-lg bg-blue-500/10 text-blue-300 border border-blue-500/20">nenaBlue</span>
+                            <span
+                                class="px-2 py-1 text-[10px] rounded-lg bg-purple-500/10 text-purple-300 border border-purple-500/20">nenaClub</span>
+                            <span
+                                class="px-2 py-1 text-[10px] rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">sea001</span>
+                            <span
+                                class="px-2 py-1 text-[10px] rounded-lg bg-night-800 text-slate-400 border border-slate-700">+
+                                More Coming</span>
+                        </div>
+                    </div>
+
+                    <div class="glass p-6 rounded-3xl space-y-4 hover:border-purple-500/30 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                                <i data-lucide="palette" class="w-5 h-5 text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-100">Bespoke Accent Themes</h3>
+                                <span class="text-[10px] text-purple-400 font-semibold">Premium / Supporter Only</span>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Tweak app-wide accent markers to match your mood. Toggle beautifully deep custom variations
+                            of violet, dark cyan, pink, and emerald green.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="flex gap-2">
+                                <div
+                                    class="w-6 h-6 rounded-full bg-purple-500 ring-2 ring-purple-500 ring-offset-2 ring-offset-night-950">
+                                </div>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-blue-500 hover:ring-2 hover:ring-blue-400 hover:ring-offset-2 hover:ring-offset-night-950 transition-all cursor-pointer">
+                                </div>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-pink-500 hover:ring-2 hover:ring-pink-400 hover:ring-offset-2 hover:ring-offset-night-950 transition-all cursor-pointer">
+                                </div>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-emerald-500 hover:ring-2 hover:ring-emerald-400 hover:ring-offset-2 hover:ring-offset-night-950 transition-all cursor-pointer">
+                                </div>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-orange-500 hover:ring-2 hover:ring-orange-400 hover:ring-offset-2 hover:ring-offset-night-950 transition-all cursor-pointer">
+                                </div>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-cyan-500 hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-night-950 transition-all cursor-pointer">
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-slate-500">6+ colors available (updated regularly)</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-premium p-5 rounded-2xl flex items-center justify-between gap-4">
+                        <div class="space-y-0.5">
+                            <p class="font-bold text-fuchsia-300 text-sm">Unlock with Premium Tier</p>
+                            <p class="text-xs text-slate-400">From $20/mo • Custom Assets, Themes, and Private Discord
+                                DM Perks</p>
+                        </div>
+                        <a href="#plans"
+                            class="flex-shrink-0 px-4 py-2 rounded-xl bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-xs font-bold shadow-lg shadow-fuchsia-600/20 hover:opacity-90 transition-all">
+                            View Plans
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-standard" class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-0 left-1/3 w-80 h-80 bg-purple-600/8 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center space-y-4 mb-14">
+                <span class="text-purple-400 text-xs font-bold tracking-widest uppercase">WHY $1 / MONTH</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                    Why <span class="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Only $1
+                        / Month</span> is Absolute Value
+                </h2>
+                <p class="text-slate-400 text-sm max-w-lg mx-auto">
+                    Instead of worrying about a daily download limit, explore with zero boundaries.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+
+                <div class="glass p-6 rounded-3xl space-y-4">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i data-lucide="list" class="w-4 h-4 text-cyan-400"></i>
+                        <h3 class="font-bold text-slate-100 text-sm">The Reality of Modern Web Media Streams</h3>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        When you tap a media stream link on video sites, multiple cryptic assets often populate. Knowing
+                        which link holds the actual high-res video varies across sites.
+                    </p>
+                    <div class="space-y-1.5 font-mono text-xs">
+                        <div
+                            class="flex items-center justify-between px-3 py-2 rounded-lg bg-night-950 border border-slate-800">
+                            <span class="flex items-center gap-2 text-slate-400"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-yellow-400 flex-shrink-0"></span>HLS stream
+                                (m3u8)</span>
+                            <span class="text-slate-600 text-[10px]">Ad? Content track?</span>
+                        </div>
+                        <div
+                            class="flex items-center justify-between px-3 py-2 rounded-lg bg-night-950 border border-slate-800">
+                            <span class="flex items-center gap-2 text-slate-400"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>MP4 (SD
+                                480p)</span>
+                            <span class="text-slate-600 text-[10px]">Could be the video...</span>
+                        </div>
+                        <div
+                            class="flex items-center justify-between px-3 py-2 rounded-lg bg-purple-950/50 border border-purple-500/40">
+                            <span class="flex items-center gap-2 text-purple-300 font-bold"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-purple-400 flex-shrink-0"></span>Unknown
+                                HD</span>
+                            <span class="text-purple-400 text-[10px] font-bold">← Often the right choice!</span>
+                        </div>
+                        <div
+                            class="flex items-center justify-between px-3 py-2 rounded-lg bg-night-950 border border-slate-800">
+                            <span class="flex items-center gap-2 text-slate-400"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>Unknown SD</span>
+                            <span class="text-slate-600 text-[10px]">Depends on platform</span>
+                        </div>
+                        <div
+                            class="flex items-center justify-between px-3 py-2 rounded-lg bg-night-950 border border-slate-800">
+                            <span class="flex items-center gap-2 text-rose-500"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-rose-500 flex-shrink-0"></span>GIF (0.2MB)</span>
+                            <span class="text-rose-600 text-[10px]">Banner Ad</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 text-[11px] leading-relaxed border-t border-slate-800 pt-3">
+                        In many scenarios, options labeled "Unknown HD" are the correct ones. No software can predict
+                        this perfectly; <strong class="text-slate-400">users discover it through brief trial and
+                            error.</strong> For example, picking HLS right after starting playback works best on
+                        Pornhub, while TokyoMotion requires selecting "Unknown HD/SD". Learning these site behaviors is
+                        part of the fun!
+                    </p>
+                </div>
+
+                <div class="space-y-4 flex flex-col justify-center">
+                    <div class="glass p-5 rounded-2xl border-l-4 border-slate-700 space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 text-xs font-bold">FREE
+                                TIER</span>
+                            <span class="text-slate-300 font-bold text-sm">10 Downloads / Day Limit</span>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed">If a media node provides 5 stream candidates,
+                            testing two wrong nodes leaves you with few daily chances, adding unnecessary stress to your
+                            browsing experience.</p>
+                        <div class="flex items-center gap-2 text-rose-400 text-xs font-semibold">
+                            <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+                            If you miss the right track, you have to wait until tomorrow
+                        </div>
+                    </div>
+
+                    <div class="glass-premium p-5 rounded-2xl border-l-4 border-purple-500 space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold">$1
+                                / MONTH</span>
+                            <span class="text-purple-300 font-bold text-sm">Infinite Unlimited Access</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">Test every stream asset link freely with zero
+                            worry. Zero stress, maximum convenience, and instant access to the files you want.</p>
+                        <div class="flex items-center gap-2 text-emerald-400 text-xs font-semibold">
+                            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                            Test everything seamlessly to lock down the correct file path
+                        </div>
+                    </div>
+
+                    <p class="text-slate-500 text-xs text-center">Why stress over daily limitations when you can clear
+                        all boundaries for just $1?</p>
+                </div>
+            </div>
+
+            <div class="glass-premium p-6 md:p-8 rounded-3xl text-center space-y-6">
+                <p class="text-slate-400 text-xs tracking-widest uppercase font-semibold">Let's look at standard
+                    industry pricing scales...</p>
+                <div class="flex items-center justify-center gap-6 md:gap-12 flex-wrap">
+                    <div class="text-center space-y-1 opacity-60">
+                        <p class="text-slate-400 text-xs">Standard ChatGPT / Claude Pro Plans</p>
+                        <p class="text-4xl font-extrabold text-slate-300">$20<span
+                                class="text-base font-normal text-slate-500"> /mo</span></p>
+                    </div>
+                    <div class="text-slate-600 font-bold text-2xl">vs</div>
+                    <div class="text-center space-y-1">
+                        <p class="text-purple-400 text-xs font-bold tracking-wide">YorunoBrowser Standard Tier</p>
+                        <p
+                            class="text-6xl font-extrabold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                            $1<span class="text-xl font-normal text-slate-400"> /mo</span></p>
+                    </div>
+                </div>
+                <p class="text-slate-300 text-base font-semibold">
+                    Get an enhanced browsing experience for just <span class="text-purple-300 font-bold">1/20th the
+                        price</span> of a monthly AI subscription.
+                </p>
+                <p class="text-slate-500 text-xs max-w-sm mx-auto">Think about it: if your regular AI tools cost $20,
+                    this premium layout sits at a tiny fraction of that amount.</p>
+                <a href="#plans"
+                    class="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-sm shadow-lg shadow-purple-600/20 hover:opacity-90 active:scale-95 transition-all">
+                    Choose Standard Plan
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans" class="py-20 bg-night-900/40 relative">
+        <div class="max-w-6xl mx-auto px-4">
+
+            <div class="text-center space-y-4 mb-16">
+                <span class="text-purple-400 text-xs font-bold tracking-widest uppercase">PRICING PLANS</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Pick a Plan That Fits Your Flow</h2>
+                <p class="text-slate-400 text-sm max-w-lg mx-auto">
+                    Enjoy up to 10 daily media downloads for free, or support development via Patreon to unlock infinite
+                    downloads and advanced file converter layouts.
+                </p>
+            </div>
+
+            <div class="overflow-x-auto rounded-3xl border border-slate-800/80 bg-night-950/60 shadow-xl">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                    <thead>
+                        <tr class="border-b border-slate-800 bg-night-900/60 text-slate-300 font-bold text-sm">
+                            <th class="p-5">Tier Plan</th>
+                            <th class="p-5">Pricing Matrix</th>
+                            <th class="p-5">Media Downloads</th>
+                            <th class="p-5">File Convert & Re-encode</th>
+                            <th class="p-5">Custom Themes / Icons</th>
+                            <th class="p-5">Discord VIP Access Perks</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-900 text-slate-300 text-sm">
+                        <tr class="hover:bg-slate-900/20 transition-colors">
+                            <td class="p-5 font-bold text-slate-200 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span> Free
+                            </td>
+                            <td class="p-5 font-mono text-slate-400">0 USD <span
+                                    class="text-[11px] text-slate-500">/mo</span></td>
+                            <td class="p-5">10 DLs / Day Limit</td>
+                            <td class="p-5 text-slate-500"><i data-lucide="x" class="w-4 h-4 text-rose-500"></i></td>
+                            <td class="p-5 text-slate-500"><i data-lucide="x" class="w-4 h-4 text-rose-500"></i></td>
+                            <td class="p-5 text-slate-500"><i data-lucide="x" class="w-4 h-4 text-rose-500"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/20 transition-colors bg-purple-950/5">
+                            <td class="p-5 font-bold text-purple-300 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span> Standard
+                            </td>
+                            <td class="p-5 font-mono text-purple-400 font-bold">1 USD <span
+                                    class="text-[11px] text-slate-500">/mo</span></td>
+                            <td class="p-5 text-emerald-400 font-semibold">Unlimited (Inf)</td>
+                            <td class="p-5 text-slate-500"><i data-lucide="x" class="w-4 h-4 text-rose-500"></i></td>
+                            <td class="p-5 text-slate-500"><i data-lucide="x" class="w-4 h-4 text-rose-500"></i></td>
+                            <td class="p-5 text-slate-500"><i data-lucide="x" class="w-4 h-4 text-rose-500"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/20 transition-colors">
+                            <td class="p-5 font-bold text-cyan-300 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> Pro
+                            </td>
+                            <td class="p-5 font-mono text-cyan-400 font-bold">5 USD <span
+                                    class="text-[11px] text-slate-500">/mo</span></td>
+                            <td class="p-5 text-emerald-400 font-semibold">Unlimited (Inf)</td>
+                            <td class="p-5 text-emerald-400"><i data-lucide="check"
+                                    class="w-4 h-4 text-emerald-400 inline"></i> Unlocked (O)</td>
+                            <td class="p-5 text-slate-500"><i data-lucide="x" class="w-4 h-4 text-rose-500"></i></td>
+                            <td class="p-5 text-slate-500"><i data-lucide="x" class="w-4 h-4 text-rose-500"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/20 transition-colors bg-fuchsia-950/10">
+                            <td class="p-5 font-bold text-fuchsia-300 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-fuchsia-400 animate-pulse"></span> Premium
+                            </td>
+                            <td class="p-5 font-mono text-fuchsia-400 font-bold">20 USD <span
+                                    class="text-[11px] text-slate-500">/mo</span></td>
+                            <td class="p-5 text-emerald-400 font-semibold">Unlimited (Inf)</td>
+                            <td class="p-5 text-emerald-400"><i data-lucide="check"
+                                    class="w-4 h-4 text-emerald-400 inline"></i> Unlocked (O)</td>
+                            <td class="p-5 text-fuchsia-400 font-medium">Color / Icon Customization</td>
+                            <td class="p-5 text-slate-200">Direct VIP DM Channel Support</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/20 transition-colors">
+                            <td class="p-5 font-bold text-yellow-300 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-ping"></span> Supporter
+                            </td>
+                            <td class="p-5 font-mono text-yellow-400 font-bold">100 USD <span
+                                    class="text-[11px] text-slate-500">/mo</span></td>
+                            <td class="p-5 text-emerald-400 font-semibold">Unlimited (Inf)</td>
+                            <td class="p-5 text-emerald-400"><i data-lucide="check"
+                                    class="w-4 h-4 text-emerald-400 inline"></i> Unlocked (O)</td>
+                            <td class="p-5 text-fuchsia-400 font-medium">Color / Icon Customization</td>
+                            <td class="p-5 text-slate-200">Direct VIP DM Channel Support</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 text-center space-y-1">
+                <p class="text-slate-500 text-xs">* Media downloader does not bypass DRM (Digital Rights Management)
+                    encryptions on streaming structures.</p>
+                <p class="text-slate-500 text-xs">* Media extraction dependencies depend on external site layouts and
+                    may vary over time.</p>
+                <p class="text-slate-500 text-xs">* Subscriptions run through Patreon securely. Check billing ledger
+                    allocations inside your app's built-in parameters page smoothly.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="download" class="py-20 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4">
+
+            <div class="text-center space-y-4 mb-16">
+                <span class="text-purple-400 text-xs font-bold tracking-widest uppercase">INSTALLATION</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Deploy Natively to Your iOS Device</h2>
+                <p class="text-slate-400 text-sm max-w-lg mx-auto">
+                    YorunoBrowser code targets open-source public spaces on GitHub. Sideload via AltStore or your
+                    preferred iOS package management tools seamlessly.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch mb-12">
+
+                <div
+                    class="glass-premium p-8 rounded-3xl flex flex-col justify-between space-y-6 border border-purple-500/30">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span
+                                class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold">Recommended
+                                for JP & EU</span>
+                            <i data-lucide="smartphone" class="w-6 h-6 text-purple-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-100">AltStore PAL</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            For users on iOS 17.4+ within supported marketplace ecosystems. Install, sync, and process
+                            version updates cleanly with single-tap store mechanics.
+                        </p>
+                    </div>
+                    <div class="space-y-3">
+                        <button onclick="toggleAccordion('guide-pal')"
+                            class="w-full text-left text-xs text-purple-300 hover:text-purple-200 flex items-center justify-between border-t border-slate-800 pt-4">
+                            <span>View Installation Guide Steps</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4" id="guide-pal-icon"></i>
+                        </button>
+                        <div id="guide-pal"
+                            class="hidden text-xs text-slate-400 space-y-2 bg-night-950/80 p-3 rounded-xl border border-slate-900 transition-all">
+                            <p>1. Open Safari on iOS, navigate to the official AltStore PAL marketplace link, register,
+                                and install the store app hub.</p>
+                            <p>2. Open the AltStore PAL app on your phone, then add the official YorunoBrowser GitHub
+                                Repository URL link into your active sources panel.</p>
+                            <p>3. Find YorunoBrowser in the app listings and tap install to set everything up natively!
+                            </p>
+                        </div>
+                        <a href="https://altstore.io/" target="_blank"
+                            class="w-full py-4.5 rounded-2xl bg-gradient-to-r from-purple-600 to-fuchsia-600 text-center font-bold text-white text-sm block shadow-lg hover:opacity-90 transition-all">
+                            Open AltStore PAL
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-3xl flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-bold">Global
+                                Route • Computer Needed</span>
+                            <i data-lucide="laptop" class="w-6 h-6 text-cyan-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-100">AltServer (AltStore Free)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Deploy your app safely from any global location for free using a Windows or macOS desktop
+                            environment over local Wi-Fi or tether links.
+                        </p>
+                    </div>
+                    <div class="space-y-3">
+                        <button onclick="toggleAccordion('guide-server')"
+                            class="w-full text-left text-xs text-cyan-300 hover:text-cyan-200 flex items-center justify-between border-t border-slate-800 pt-4">
+                            <span>View Installation Guide Steps</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4" id="guide-server-icon"></i>
+                        </button>
+                        <div id="guide-server"
+                            class="hidden text-xs text-slate-400 space-y-2 bg-night-950/80 p-3 rounded-xl border border-slate-900 transition-all">
+                            <p>1. Download and open the AltServer tool client framework components natively inside a
+                                Windows or macOS system configuration.</p>
+                            <p>2. Attach your iPhone via USB cable, locate AltServer in your system menu bar tray, and
+                                run "Install AltStore" onto your targeted phone target.</p>
+                            <p>3. Grab our latest stable IPA release package binary from the official GitHub workspace,
+                                launch AltStore on mobile, and click the "+" button under My Apps to build it locally.
+                            </p>
+                        </div>
+                        <a href="https://altstore.io/" target="_blank"
+                            class="w-full py-4.5 rounded-2xl bg-night-900 border border-slate-800 text-center font-bold text-slate-300 text-sm block hover:bg-slate-800 transition-all">
+                            Download AltServer (Free)
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="glass max-w-xl mx-auto p-6 rounded-3xl text-center space-y-4">
+                <div class="flex items-center justify-center gap-3">
+                    <i data-lucide="github" class="w-6 h-6 text-slate-400"></i>
+                    <h4 class="font-bold text-slate-200">Official GitHub Workspace</h4>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Track public engineering milestones, code tweaks, issue diagnostics pipelines, and feature update
+                    roadmaps (including the upcoming YoruTube module integrations).
+                </p>
+                <a href="https://github.com/C0A2518617/YorunoBrowser_Official" target="_blank"
+                    class="inline-flex items-center gap-2 text-xs text-purple-400 hover:text-purple-300 font-bold">
+                    <span>Open GitHub Official Repository</span>
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-night-950 border-t border-slate-900 py-12 text-slate-500 text-xs">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-6 h-6 rounded-lg bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center">
+                    <i data-lucide="moon" class="w-3.5 h-3.5 text-white"></i>
+                </div>
+                <span class="font-bold text-slate-300 tracking-wider">YorunoBrowser Project</span>
+            </div>
+
+            <p class="text-center md:text-left">
+                © 2026 YorunoBrowser. Developed under the night sky. All rights reserved.
+            </p>
+
+            <div class="flex items-center gap-6">
+                <a href="https://patreon.com" target="_blank" class="hover:text-fuchsia-400 transition-colors">Support
+                    on Patreon</a>
+                <a href="#plans" class="hover:text-purple-400 transition-colors">Pricing Plans</a>
+                <a href="https://github.com" target="_blank" class="hover:text-slate-300 transition-colors">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Dynamically alter header appearance based on window scroll depth parameters
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-glass', 'shadow-xl');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('navbar-glass', 'shadow-xl');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+
+        // Toggle active tabs inside interactive demo component block areas
+        function switchDemo(demoType) {
+            const btns = {
+                hide: document.getElementById('btn-demo-hide'),
+                dark: document.getElementById('btn-demo-dark'),
+                player: document.getElementById('btn-demo-player')
+            };
+            const contents = {
+                hide: document.getElementById('demo-hide'),
+                dark: document.getElementById('demo-dark'),
+                player: document.getElementById('demo-player')
+            };
+
+            Object.keys(btns).forEach(key => {
+                if (key === demoType) {
+                    btns[key].classList.add('border-purple-500', 'text-purple-300');
+                    btns[key].classList.remove('border-transparent', 'text-slate-400');
+                    contents[key].classList.remove('hidden');
+                } else {
+                    btns[key].classList.remove('border-purple-500', 'text-purple-300');
+                    btns[key].classList.add('border-transparent', 'text-slate-400');
+                    contents[key].classList.add('hidden');
+                }
+            });
+        }
+
+        // --- Proximity Stealth Simulation Mechanics Logic ---
+        function activateHide() {
+            const screenTitle = document.getElementById('screen-title');
+            const privateContent = document.getElementById('private-content');
+            const fakeContent = document.getElementById('fake-content');
+            const screenFooter = document.getElementById('screen-footer');
+
+            screenTitle.innerText = "🔍 Information Technology - Wikipedia";
+            privateContent.classList.add('hidden');
+            fakeContent.classList.remove('hidden');
+            screenFooter.innerText = "URL: https://en.wikipedia.org/wiki/Information_technology";
+        }
+
+        function deactivateHide() {
+            const screenTitle = document.getElementById('screen-title');
+            const privateContent = document.getElementById('private-content');
+            const fakeContent = document.getElementById('fake-content');
+            const screenFooter = document.getElementById('screen-footer');
+
+            screenTitle.innerText = "㊙ Viewing Secret Private Content...";
+            privateContent.classList.remove('hidden');
+            fakeContent.classList.add('hidden');
+            screenFooter.innerText = "URL: https://secret-contents.xyz/video1";
+        }
+
+        // --- Forced Dark Mode Simulation Demo Logic ---
+        let isDarkMode = false;
+        function toggleDarkModeDemo() {
+            isDarkMode = !isDarkMode;
+
+            const screen = document.getElementById('demo-dark-screen');
+            const header = document.getElementById('demo-dark-header');
+            const title = document.getElementById('demo-dark-title');
+            const text = document.getElementById('demo-dark-text');
+            const card = document.getElementById('demo-dark-card');
+            const cardTitle = document.getElementById('demo-dark-card-title');
+            const cardSub = document.getElementById('demo-dark-card-sub');
+            const switchBtn = document.getElementById('demo-dark-switch-btn');
+            const switchKnob = document.getElementById('demo-dark-switch-knob');
+
+            if (isDarkMode) {
+                screen.classList.remove('bg-white', 'text-slate-900', 'border-slate-200');
+                screen.classList.add('bg-night-950', 'text-slate-100', 'border-purple-500/20');
+
+                header.classList.remove('border-b', 'border-slate-200');
+                header.classList.add('border-b', 'border-slate-800');
+
+                title.classList.add('text-slate-100');
+                title.classList.remove('text-slate-900');
+
+                text.classList.add('text-slate-400');
+                text.classList.remove('text-slate-600');
+
+                card.classList.remove('bg-slate-50', 'border-slate-200');
+                card.classList.add('bg-night-900/60', 'border-slate-800');
+
+                cardTitle.classList.add('text-slate-200');
+                cardTitle.classList.remove('text-slate-800');
+
+                cardSub.classList.add('text-slate-500');
+                cardSub.innerText = "(Colors stay intact without inversion!)";
+
+                switchBtn.classList.add('bg-purple-600');
+                switchBtn.classList.remove('bg-slate-700');
+                switchKnob.classList.add('translate-x-6');
+
+            } else {
+                screen.classList.add('bg-white', 'text-slate-900', 'border-slate-200');
+                screen.classList.remove('bg-night-950', 'text-slate-100', 'border-purple-500/20');
+
+                header.classList.add('border-b', 'border-slate-200');
+                header.classList.remove('border-b', 'border-slate-800');
+
+                title.classList.remove('text-slate-100');
+                title.classList.add('text-slate-900');
+
+                text.classList.remove('text-slate-400');
+                text.classList.add('text-slate-600');
+
+                card.classList.add('bg-slate-50', 'border-slate-200');
+                card.classList.remove('bg-night-900/60', 'border-slate-800');
+
+                cardTitle.classList.remove('text-slate-200');
+                cardTitle.classList.add('text-slate-800');
+
+                cardSub.innerText = "(Should NOT be color-inverted)";
+
+                switchBtn.classList.remove('bg-purple-600');
+                switchBtn.classList.add('bg-slate-700');
+                switchKnob.classList.remove('translate-x-6');
+            }
+        }
+
+        // --- Interactive Media Player Seek Controls Demo Logic ---
+        function setPlayerPercent(percent) {
+            percent = Math.max(0, Math.min(100, Math.round(percent)));
+            const timeSpan = document.getElementById('player-time');
+            const bigPercent = document.getElementById('player-big-percentage');
+            const progressBar = document.getElementById('player-progress-bar');
+            const seekInput = document.getElementById('seekbar-input');
+
+            const currentSeconds = Math.floor(600 * (percent / 100));
+            const minutes = Math.floor(currentSeconds / 60);
+            const seconds = currentSeconds % 60;
+            timeSpan.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} / 10:00 (${percent}%)`;
+            bigPercent.innerText = `${percent}%`;
+            progressBar.style.width = `${percent}%`;
+            if (seekInput) seekInput.value = percent;
+
+            const jump25Btn = document.getElementById('jump25-btn');
+            const jump25Passed = document.getElementById('jump25-passed');
+            if (jump25Btn && jump25Passed) {
+                if (percent < 25) {
+                    jump25Btn.classList.remove('hidden');
+                    jump25Passed.classList.add('hidden');
+                } else {
+                    jump25Btn.classList.add('hidden');
+                    jump25Passed.classList.remove('hidden');
+                }
+            }
+        }
+
+        // --- Premium Icons Showcase Animation Carousel Track Engine ---
+        const iconData = [
+            { src: 'Icons/YoBr_Icon_nena.png', name: 'nena', desc: 'Default theme asset icon design variant', glow: 'bg-purple-500/30' },
+            { src: 'Icons/YoBr_Icon_nenaBlue.png', name: 'nenaBlue', desc: 'Bespoke blue color theme structural design', glow: 'bg-blue-500/30' },
+            { src: 'Icons/YoBr_Icon_nenaClub.png', name: 'nenaClub', desc: 'Deep neon club aesthetics design layout look', glow: 'bg-fuchsia-500/30' },
+            { src: 'Icons/YoBr_Icon_sea001.png', name: 'sea001', desc: 'Clean coastal seaside premium style profile', glow: 'bg-cyan-500/30' },
+        ];
+        let currentIconIdx = 0;
+        let iconTimer = null;
+
+        function selectIcon(index) {
+            currentIconIdx = index;
+            const d = iconData[index];
+            const img = document.getElementById('main-icon-img');
+            const name = document.getElementById('icon-name');
+            const desc = document.getElementById('icon-desc');
+            const glow = document.getElementById('icon-glow');
+
+            img.style.opacity = '0';
+            img.style.transform = 'scale(0.88)';
+            setTimeout(() => {
+                img.src = d.src;
+                name.textContent = d.name;
+                desc.textContent = d.desc;
+                glow.className = `absolute inset-0 rounded-3xl blur-2xl ${d.glow} scale-125 transition-all duration-700`;
+                img.style.opacity = '1';
+                img.style.transform = 'scale(1)';
+                document.querySelectorAll('.icon-thumb-btn').forEach((btn, i) => {
+                    if (i === index) {
+                        btn.classList.add('border-purple-500', 'shadow-lg', 'shadow-purple-500/20');
+                        btn.classList.remove('border-transparent');
+                    } else {
+                        btn.classList.remove('border-purple-500', 'shadow-lg', 'shadow-purple-500/20');
+                        btn.classList.add('border-transparent');
+                    }
+                });
+            }, 160);
+        }
+
+        const subscriptionSection = document.getElementById('subscription');
+        if (subscriptionSection) {
+            const iconObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!iconTimer) {
+                            iconTimer = setInterval(() => {
+                                currentIconIdx = (currentIconIdx + 1) % iconData.length;
+                                selectIcon(currentIconIdx);
+                            }, 2400);
+                        }
+                    } else {
+                        if (iconTimer) { clearInterval(iconTimer); iconTimer = null; }
+                    }
+                });
+            }, { threshold: 0.25 });
+            iconObserver.observe(subscriptionSection);
+        }
+
+        // --- Accordion Deployment Steps Handler Mechanics ---
+        function toggleAccordion(id) {
+            const guide = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            if (guide.classList.contains('hidden')) {
+                guide.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                guide.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+
+</html>
