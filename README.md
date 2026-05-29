@@ -105,12 +105,14 @@ Save videos, audio, and multiple images directly from supported sites.
 3. Confirm the filename and type, then Execute / Cancel
 4. Download runs (failed downloads do not consume your DL count)
 ```
+* In many cases, you should play the video before tap the DL button.
 
 ### Supported Sites
 | Status | Example Sites |
 |--------|---------------|
-| ✅ Supported (HLS/MP4) | Xvideos / Pornhub / TokyoMotion / Nicovideo, etc. |
-| 🔗 Redirect (External DL) | X (formerly Twitter) / YouTube |
+| ✅ Supported (HLS/MP4) | Xvideos / Pornhub / TokyoMotion etc. |
+| 🔗 Redirect (External DL) | YouTube |
+| ⚠️ NoSound | X(Twitter) |
 | ❌ Unsupported (DRM) | Netflix / Amazon Prime Video, etc. |
 
 > **Error Code Reference**
@@ -167,6 +169,7 @@ YorunoBrowser is not on the App Store. Install via **AltStore**.
 5. **Android version?** — Currently iOS only, but an Android version may be considered in the future. *(Seriously though — Android users spend less, and the app would just get cracked with ModApks, so probably not.)*
 6. **Windows/Mac version?** — Would be nice to support someday, but not many people browse on a PC for... *that*.
 7. **Can I decompile it and unlock paid features for free?** — F**K YOU. Are you killing me?
+8. ** Refund?** - Please check patreon's refund policy.
 
 ## 📄 License
 
