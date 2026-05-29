@@ -131,10 +131,13 @@ Available as a monthly subscription on Patreon.
 | **Free** | $0 / mo | 10 DL/day | - | — | — | — |
 | **Standard** | $1 / mo | Unlimited | - | — | — | — |
 | **Pro** | $5 / mo | Unlimited | ✅ | ✅ | — | — |
-| **Premium** | $20 / mo | Unlimited | ✅ | ✅ | Color / Icon | DM |
-| **Supporter** | $100 / mo | Unlimited | ✅ | ✅ | Color / Icon | DM |
+| **Premium** | $20 / mo | Unlimited | ✅ | ✅ |  ✅ | ✅  |
+| **Supporter** | $100 / mo | Unlimited | ✅ | ✅ | ✅ | ✅ |
 
-* Additional Settings : BlockSiteException / PaddingForOneHandException / AdsCleanerException and more (If you don't subscribe more than pro, you can only use official default setting.)
+* Additional Settings : BlockSiteException / PaddingForOneHandException / AdsCleanerException and more. Available from Pro and above.
+* File Conversion : Compress, resize, and more. Available from Pro and above.
+* Theme : Change the theme color and app icon. Available from Premium and above.
+* Discord : Everyone can join the Discord server, but only check-in supporters can talk to the developer.
 * <strong>Recommended: Standard Plan</strong> — All the core features that make this browser great — one-handed operation and more — are available for free. But if you want unlimited video downloads, this is the plan for you. When downloading, you often have to choose between Unknown SD/HD, HLS, and GIF. If you pick wrong, you don't have to wait until tomorrow — no limit means no risk of the video disappearing by the time you come back.
 * Only Standard Plan has a free trial for 7 days.
 ---
