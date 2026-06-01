@@ -1,0 +1,189 @@
+/* 全体のリセットと共通設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #000000;
+    color: #eeeeee;
+    padding-top: 50px; /* ヘッダーの固定分 */
+}
+
+/* ヘッダー */
+.header {
+    background-color: #1a1a1a;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    z-index: 1000;
+    border-bottom: 1px solid #2d2d2d;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+/* 例のオレンジ色の背景のパーツ */
+.badge-orange {
+    background-color: #ff9900;
+    color: #000000;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+}
+
+/* メインコンテンツ */
+.container {
+    width: 100%;
+    max-width: 600px; /* スマホ向けサイズに制限 */
+    margin: 0 auto;
+}
+
+/* ビデオプレイヤー */
+.video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #151515;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.video-overlay-text {
+    position: absolute;
+    color: #555555;
+    font-size: 14px;
+    pointer-events: none; /* ビデオの操作を邪魔しない */
+}
+
+/* 動画詳細 */
+.video-player-container {
+    padding-bottom: 10px;
+}
+
+.video-title {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px 5px 15px;
+    line-height: 1.4;
+    color: #ffffff;
+}
+
+.video-stats {
+    font-size: 12px;
+    color: #b3b3b3;
+    padding: 0 15px;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #2d2d2d;
+    margin: 10px 0;
+}
+
+/* 関連動画セクション */
+.related-section {
+    padding: 10px 15px;
+}
+
+.section-title {
+    font-size: 15px;
+    color: #ff9900;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.video-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 動画カード */
+.video-card {
+    display: flex;
+    gap: 12px;
+}
+
+.thumbnail-wrapper {
+    position: relative;
+    width: 40%;
+    aspect-ratio: 16 / 9;
+    background-color: #222222; /* 画像がない時の背景色 */
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.duration {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    font-size: 10px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+.video-info {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.recommend-title {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 2行で省略 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.channel-name {
+    font-size: 11px;
+    color: #b3b3b3;
+}
+
+/* フッター */
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 11px;
+    color: #444444;
+    border-top: 1px solid #1a1a1a;
+    margin-top: 20px;
+}
