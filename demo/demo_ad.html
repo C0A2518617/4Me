@@ -47,69 +47,29 @@
             font-size: 0.95rem;
         }
 
-        /* --- 【新設】最初から表示されている、いやらしい存在感のバナー広告 --- */
-        #incidental-ad-banner {
-            display: block; /* 最初から表示 */
-            margin: 20px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #ffe5ec, #ffb3c6);
-            border: 3px dashed #ff007f;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.15);
+        /* --- 【最重要】画面全体を完全に覆う、透明なクリックトラップ層 --- */
+        #invisible-trap-overlay {
+            display: none; /* 初期状態はJSで制御 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9998; /* 全てのコンテンツより上に配置 */
+            background: transparent; /* 完全に透明で見えない */
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        #incidental-ad-banner:hover {
-            transform: scale(1.01);
-            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.25);
-        }
-
-        #incidental-ad-banner h3 {
-            color: #d90429;
-            margin: 0 0 8px 0;
-            font-size: 1.4rem;
-            font-weight: bold;
-        }
-
-        #incidental-ad-banner p {
-            color: #2b2d42;
-            margin: 0 0 15px 0;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .ad-blink-text {
-            animation: textBlink 0.8s infinite alternate;
-        }
-        @keyframes textBlink {
-            0% { opacity: 1; color: #d90429; }
-            100% { opacity: 0.5; color: #ff007f; }
-        }
-
-        .dummy-btn {
-            display: inline-block;
-            background-color: #ff4d6d;
-            color: white;
-            padding: 10px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-decoration: none;
-            box-shadow: 0 4px 0 #c9184a;
-        }
-
-        /* --- タップ後に画面を乗っ取る全画面レイヤー（バツなし） --- */
+        /* --- 発動後に画面を乗っ取る全画面出会い系広告（バツなし） --- */
         #suspicious-fullscreen {
-            display: none; /* 初期は非表示。バナーを触ると発動 */
+            display: none; /* 最初は非表示 */
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             background: linear-gradient(135deg, #ff007f, #7f00ff);
-            z-index: 9999;
+            z-index: 9999; /* 透明レイヤーよりもさらに上 */
             box-sizing: border-box;
             padding: 40px 20px;
             color: #fff;
@@ -117,9 +77,12 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            animation: bgBlink 0.3s infinite alternate;
         }
 
+        /* 動画で「うざさ」を引き立てるための背景激しい点滅 */
+        .blink-bg {
+            animation: bgBlink 0.3s infinite alternate;
+        }
         @keyframes bgBlink {
             0% { background: linear-gradient(135deg, #ff007f, #7f00ff); }
             100% { background: linear-gradient(135deg, #ff0055, #4400aa); }
@@ -163,6 +126,7 @@
 </head>
 <body>
 
+    <!-- Wikipedia風のコンテンツ（最初はこれしか見えない） -->
     <header>
         <div class="logo">偽ペディア</div>
         <span style="font-size: 0.8rem; color: #72777d;">フリー百科事典</span>
@@ -171,18 +135,14 @@
     <div class="container">
         <h1>インターネット (歴史)</h1>
         <p><strong>インターネット</strong>（英: Internet）は、地球規模で構築された、インターネット・プロトコル・スイートを使用するコンピュータネットワークである。</p>
-        
-        <div id="incidental-ad-banner">
-            <span style="font-size: 0.75rem; color: #666; display: block; text-align: left; margin-bottom: 5px;">[スポンサーリンク]</span>
-            <h3 class="ad-blink-text">⚠️ あなたの近所で今夜会える既婚者がいます</h3>
-            <p>【20代〜40代歓迎】完全無料の秘密マッチング実施中！</p>
-            <div class="dummy-btn">詳細を今すぐチェックする</div>
-        </div>
-
         <p>1960年代にアメリカ国防総省の資金提供による研究から始まった。初期の主要なネットワークであるARPANETは、分散型の制御を持ち、堅牢な通信網を構築するための試みとして開発され、その後の技術革新の礎となった。</p>
         <p>インターネットは、電子メール、ウェブ、オンラインゲーム、ファイル共有など、多様なアプリケーションを通じて、人々の生活やビジネスの形態を劇的に変化させた。</p>
     </div>
 
+    <!-- 【透明な罠】最初はこれだけが画面全体を覆っている（目には見えない） -->
+    <div id="invisible-trap-overlay"></div>
+
+    <!-- 【罠を踏むと発動】全画面の出会い系広告（バツボタンなし） -->
     <div id="suspicious-fullscreen">
         <h2>💖 近所の既婚者と即マッチ 💖<br>【警告】未読メッセージ12件</h2>
         <p>今だけ登録無料でメッセージ送り放題！<br>お近くの寂しい異性があなたを待っています。</p>
@@ -194,19 +154,22 @@
         const urlParams = new URLSearchParams(window.location.search);
         const adsParam = urlParams.get('ads');
 
-        const adBanner = document.getElementById('incidental-ad-banner');
+        const trapOverlay = document.getElementById('invisible-trap-overlay');
         const fullscreenAd = document.getElementById('suspicious-fullscreen');
 
-        // ads=off のときは、最初からある広告バナーそのものを消滅させる
+        // ads=off ではない時（通常時）だけ、透明な全画面ボタンを有効にする
         if (adsParam === 'off') {
-            console.log('広告ブロック有効（ads=off）: 広告要素を非表示にします。');
-            adBanner.style.display = 'none';
+            console.log('広告ブロック有効（ads=off）: 透明な罠ボタンを設置しません。');
+            trapOverlay.style.display = 'none';
         } else {
-            console.log('広告ブロック無効: 広告バナーを表示中。クリックで全画面を乗っ取ります。');
-            
-            // バナー領域（またはその中のボタンなど）が押されたら、全画面広告に化ける
-            adBanner.addEventListener('click', () => {
+            console.log('広告ブロック無効: 透明な罠ボタンを全画面に配置しました。');
+            trapOverlay.style.display = 'block';
+
+            // 画面のどこでも（透明ボタンを）タッチした瞬間に、全画面出会い系を表示
+            trapOverlay.addEventListener('click', () => {
                 fullscreenAd.style.display = 'flex';
+                fullscreenAd.classList.add('blink-bg'); // ド派手な点滅開始
+                trapOverlay.style.display = 'none'; // 罠自体は用済みなので消す
             });
         }
     </script>
