@@ -33,6 +33,7 @@
             background-color: #ffffff;
             min-height: 100vh;
             box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            box-sizing: border-box;
         }
         h1 {
             font-family: 'Linux Libertine', 'Georgia', serif;
@@ -46,22 +47,62 @@
             font-size: 0.95rem;
         }
 
-        /* --- 広告用の透明トリガーレイヤー --- */
-        #ad-trigger-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9998;
+        /* --- 【新設】最初から表示されている、いやらしい存在感のバナー広告 --- */
+        #incidental-ad-banner {
+            display: block; /* 最初から表示 */
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffe5ec, #ffb3c6);
+            border: 3px dashed #ff007f;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.15);
             cursor: pointer;
-            background: transparent;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        /* --- 【変更】画面全体を覆う出会い系風広告 --- */
-        #suspicious-popup {
-            display: none;
+        #incidental-ad-banner:hover {
+            transform: scale(1.01);
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.25);
+        }
+
+        #incidental-ad-banner h3 {
+            color: #d90429;
+            margin: 0 0 8px 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        #incidental-ad-banner p {
+            color: #2b2d42;
+            margin: 0 0 15px 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .ad-blink-text {
+            animation: textBlink 0.8s infinite alternate;
+        }
+        @keyframes textBlink {
+            0% { opacity: 1; color: #d90429; }
+            100% { opacity: 0.5; color: #ff007f; }
+        }
+
+        .dummy-btn {
+            display: inline-block;
+            background-color: #ff4d6d;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 0 #c9184a;
+        }
+
+        /* --- タップ後に画面を乗っ取る全画面レイヤー（バツなし） --- */
+        #suspicious-fullscreen {
+            display: none; /* 初期は非表示。バナーを触ると発動 */
             position: fixed;
             top: 0;
             left: 0;
@@ -73,24 +114,18 @@
             padding: 40px 20px;
             color: #fff;
             text-align: center;
-            
-            /* 上下中央揃え */
-            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-
-        /* 動画映え用の背景激しい点滅アニメーション */
-        .blink-bg {
             animation: bgBlink 0.3s infinite alternate;
         }
+
         @keyframes bgBlink {
             0% { background: linear-gradient(135deg, #ff007f, #7f00ff); }
             100% { background: linear-gradient(135deg, #ff0055, #4400aa); }
         }
 
-        #suspicious-popup h2 {
+        #suspicious-fullscreen h2 {
             font-size: 2.5rem;
             margin: 0 0 20px 0;
             color: #ffea00;
@@ -98,7 +133,7 @@
             line-height: 1.3;
         }
 
-        #suspicious-popup p {
+        #suspicious-fullscreen p {
             font-weight: bold;
             font-size: 1.4rem;
             max-width: 500px;
@@ -117,18 +152,12 @@
             border-radius: 50px;
             text-decoration: none;
             box-shadow: 0 8px 0 #ccbb00;
-            transition: transform 0.1s;
             animation: pulse 0.6s infinite alternate;
         }
 
         @keyframes pulse {
             0% { transform: scale(1); }
             100% { transform: scale(1.08); }
-        }
-
-        .cta-button:active {
-            transform: translateY(8px) scale(1);
-            box-shadow: none;
         }
     </style>
 </head>
@@ -142,13 +171,19 @@
     <div class="container">
         <h1>インターネット (歴史)</h1>
         <p><strong>インターネット</strong>（英: Internet）は、地球規模で構築された、インターネット・プロトコル・スイートを使用するコンピュータネットワークである。</p>
+        
+        <div id="incidental-ad-banner">
+            <span style="font-size: 0.75rem; color: #666; display: block; text-align: left; margin-bottom: 5px;">[スポンサーリンク]</span>
+            <h3 class="ad-blink-text">⚠️ あなたの近所で今夜会える既婚者がいます</h3>
+            <p>【20代〜40代歓迎】完全無料の秘密マッチング実施中！</p>
+            <div class="dummy-btn">詳細を今すぐチェックする</div>
+        </div>
+
         <p>1960年代にアメリカ国防総省の資金提供による研究から始まった。初期の主要なネットワークであるARPANETは、分散型の制御を持ち、堅牢な通信網を構築するための試みとして開発され、その後の技術革新の礎となった。</p>
-        <p>※現在、このページは広告ブロックのデモ画面として機能しています。</p>
+        <p>インターネットは、電子メール、ウェブ、オンラインゲーム、ファイル共有など、多様なアプリケーションを通じて、人々の生活やビジネスの形態を劇的に変化させた。</p>
     </div>
 
-    <div id="ad-trigger-overlay"></div>
-
-    <div id="suspicious-popup">
+    <div id="suspicious-fullscreen">
         <h2>💖 近所の既婚者と即マッチ 💖<br>【警告】未読メッセージ12件</h2>
         <p>今だけ登録無料でメッセージ送り放題！<br>お近くの寂しい異性があなたを待っています。</p>
         <a href="#" class="cta-button" onclick="alert('デモ：登録サイトへ遷移')">今すぐ無料登録！</a>
@@ -159,21 +194,19 @@
         const urlParams = new URLSearchParams(window.location.search);
         const adsParam = urlParams.get('ads');
 
-        const overlay = document.getElementById('ad-trigger-overlay');
-        const popup = document.getElementById('suspicious-popup');
+        const adBanner = document.getElementById('incidental-ad-banner');
+        const fullscreenAd = document.getElementById('suspicious-fullscreen');
 
-        // ads=off ではない時だけ、透明なボタンを有効化する
+        // ads=off のときは、最初からある広告バナーそのものを消滅させる
         if (adsParam === 'off') {
-            console.log('広告ブロック有効（ads=off）: 透明ボタンは設置しません。');
+            console.log('広告ブロック有効（ads=off）: 広告要素を非表示にします。');
+            adBanner.style.display = 'none';
         } else {
-            console.log('広告ブロック無効: 透明ボタンを有効化しました。');
-            overlay.style.display = 'block';
-
-            // 透明ボタンが押されたら全画面広告を表示
-            overlay.addEventListener('click', () => {
-                popup.style.display = 'flex'; // CSSのFlexboxを有効化して真ん中寄せにするため 'flex' に変更
-                popup.classList.add('blink-bg'); // 背景の点滅を開始
-                overlay.style.display = 'none';
+            console.log('広告ブロック無効: 広告バナーを表示中。クリックで全画面を乗っ取ります。');
+            
+            // バナー領域（またはその中のボタンなど）が押されたら、全画面広告に化ける
+            adBanner.addEventListener('click', () => {
+                fullscreenAd.style.display = 'flex';
             });
         }
     </script>
