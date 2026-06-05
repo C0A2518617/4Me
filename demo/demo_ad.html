@@ -48,7 +48,7 @@
 
         /* --- 広告用の透明トリガーレイヤー --- */
         #ad-trigger-overlay {
-            display: none; /* 初期状態は非表示（JSで制御） */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -59,44 +59,52 @@
             background: transparent;
         }
 
-        /* --- 出会い系風の怪しいポップアップ広告 --- */
+        /* --- 【変更】画面全体を覆う出会い系風広告 --- */
         #suspicious-popup {
-            display: none; /* 初期状態は非表示 */
+            display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 400px;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             background: linear-gradient(135deg, #ff007f, #7f00ff);
-            border: 4px solid #fff;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.7);
             z-index: 9999;
-            padding: 25px;
-            text-align: center;
+            box-sizing: border-box;
+            padding: 40px 20px;
             color: #fff;
-            animation: popBlink 0.5s infinite alternate;
+            text-align: center;
+            
+            /* 上下中央揃え */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* 動画映えするように点滅させるアニメーション */
-        @keyframes popBlink {
-            0% { border-color: #fff; box-shadow: 0 0 20px #ff007f; }
-            100% { border-color: #ffea00; box-shadow: 0 0 40px #ffea00; }
+        /* 動画映え用の背景激しい点滅アニメーション */
+        .blink-bg {
+            animation: bgBlink 0.3s infinite alternate;
+        }
+        @keyframes bgBlink {
+            0% { background: linear-gradient(135deg, #ff007f, #7f00ff); }
+            100% { background: linear-gradient(135deg, #ff0055, #4400aa); }
         }
 
         #suspicious-popup h2 {
-            font-size: 1.8rem;
-            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+            margin: 0 0 20px 0;
             color: #ffea00;
-            text-shadow: 2px 2px 0px #000;
+            text-shadow: 3px 3px 0px #000;
+            line-height: 1.3;
         }
 
         #suspicious-popup p {
             font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 2px #000;
+            font-size: 1.4rem;
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            text-shadow: 1px 1px 3px #000;
+            line-height: 1.8;
         }
 
         .cta-button {
@@ -104,27 +112,23 @@
             background: #ffea00;
             color: #000;
             font-weight: bold;
-            font-size: 1.3rem;
-            padding: 15px 30px;
+            font-size: 1.8rem;
+            padding: 20px 50px;
             border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 5px 0 #ccbb00;
+            box-shadow: 0 8px 0 #ccbb00;
             transition: transform 0.1s;
+            animation: pulse 0.6s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
         }
 
         .cta-button:active {
-            transform: translateY(5px);
+            transform: translateY(8px) scale(1);
             box-shadow: none;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: #fff;
-            opacity: 0.7;
         }
     </style>
 </head>
@@ -145,9 +149,8 @@
     <div id="ad-trigger-overlay"></div>
 
     <div id="suspicious-popup">
-        <div class="close-btn" onclick="closePopup()">×</div>
-        <h2>💖 近所の既婚者と即マッチ 💖</h2>
-        <p>【限定】今だけ登録無料でメッセージ送り放題！お近くの寂しい異性があなたを待っています。</p>
+        <h2>💖 近所の既婚者と即マッチ 💖<br>【警告】未読メッセージ12件</h2>
+        <p>今だけ登録無料でメッセージ送り放題！<br>お近くの寂しい異性があなたを待っています。</p>
         <a href="#" class="cta-button" onclick="alert('デモ：登録サイトへ遷移')">今すぐ無料登録！</a>
     </div>
 
@@ -163,19 +166,15 @@
         if (adsParam === 'off') {
             console.log('広告ブロック有効（ads=off）: 透明ボタンは設置しません。');
         } else {
-            console.log('広告ブロック無効: 透明ボタンを有効化しました。画面タッチで広告が出ます。');
+            console.log('広告ブロック無効: 透明ボタンを有効化しました。');
             overlay.style.display = 'block';
 
-            // 透明ボタンが押されたらポップアップを表示
+            // 透明ボタンが押されたら全画面広告を表示
             overlay.addEventListener('click', () => {
-                popup.style.display = 'block';
-                overlay.style.display = 'none'; // 連打防止のために透明レイヤーは消す
+                popup.style.display = 'flex'; // CSSのFlexboxを有効化して真ん中寄せにするため 'flex' に変更
+                popup.classList.add('blink-bg'); // 背景の点滅を開始
+                overlay.style.display = 'none';
             });
-        }
-
-        // ポップアップのバツボタン用
-        function closePopup() {
-            popup.style.display = 'none';
         }
     </script>
 </body>
