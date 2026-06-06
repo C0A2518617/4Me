@@ -14,6 +14,7 @@
             "name": "YorunoBrowser",
             "bundleIdentifier": "madeforme.Yoruno-Browser",
             "developerName": "YorunoBrowser",
+            "marketplaceID": "6774615970",
             "subtitle": "A one-handed web browser & file manager for iOS.",
             "localizedDescription": "YorunoBrowser is a premium iOS browser and file manager built for one-handed use. It includes HLS / media downloading, forced dark mode, ad blocking, popup blocking, tab groups, and file management tools.",
             "iconURL": "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Icons/YoBr_Icon_nena.webp",
