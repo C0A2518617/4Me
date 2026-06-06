@@ -1,24 +1,39 @@
 {
-  "name": "YorunoBrowser Source",
-  "identifier": "madeforme.Yoruno-Browser",
-  "apps": [
-    {
-      "name": "YorunoBrowser",
-      "bundleIdentifier": "madeforme.Yoruno-Browser",
-      "developerName": "MadeForMe",
-      "subtitle": "Useful everything at night.",
-      "localizedDescription": "A one-handed web browser & file manager for iOS. Optimized for nighttime use.",
-      "iconURL": "https://github.com/C0A2518617/YorunoBrowser_Official/blob/main/Icons/YoBr_Icon_nena.webp?raw=true",
-      "tintColor": "#194141",
-      "versions": [
+    "name": "YorunoBrowser Official Source",
+    "subtitle": "Official source for YorunoBrowser and related releases.",
+    "description": "Official AltStore source for YorunoBrowser, a one-handed iOS browser and file manager with media downloading, forced dark mode, ad blocking, tab groups, and file tools.",
+    "iconURL": "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Icons/YoBr_Icon_nena.webp",
+    "website": "https://c0a2518617.github.io/YorunoBrowser_Official/",
+    "fediUsername": "YorunoBrowser",
+    "tintColor": "#FFA500",
+    "featuredApps": [
+        "madeforme.Yoruno-Browser"
+    ],
+    "apps": [
         {
-          "version": "1.0.0",
-          "date": "2026-05-29",
-          "downloadURL": "https://github.com/C0A2518617/YorunoBrowser_Official/releases/download/v1.0.0/YorunoBrowser.ipa",
-          "size": 23600000,
-          "localizedDescription": "Initial release! Added one-handed UI and Dark Mode."
+            "name": "YorunoBrowser",
+            "bundleIdentifier": "madeforme.Yoruno-Browser",
+            "developerName": "YorunoBrowser",
+            "subtitle": "A one-handed web browser & file manager for iOS.",
+            "localizedDescription": "YorunoBrowser is a premium iOS browser and file manager built for one-handed use. It includes HLS / media downloading, forced dark mode, ad blocking, popup blocking, tab groups, and file management tools.",
+            "iconURL": "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Icons/YoBr_Icon_nena.webp",
+            "tintColor": "#FFA500",
+            "screenshots": [
+                "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Imgs/BrowserTop1.webp",
+                "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Imgs/BrowserTop2.webp",
+                "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Imgs/Settings.webp"
+            ],
+            "versions": [
+                {
+                    "version": "1.0",
+                    "buildVersion": "2",
+                    "date": "2026-06-06T00:00:00Z",
+                    "size": 7159772,
+                    "downloadURL": "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/YorunoBrowser/variant/f59c6239-9fb1-3c01-8ebb-5dbe28f277be.ipa",
+                    "localizedDescription": "Initial release of YorunoBrowser."
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ],
+    "news": []
 }
