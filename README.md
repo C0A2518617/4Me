@@ -150,8 +150,8 @@ YorunoBrowser is not on the App Store. Install via **AltStore**.
 
 ### EU / Japan Users (Recommended)
 1. Install **AltStore PAL** on your iPhone
-2. Click this URL 
-<a href="altstore://source?url=https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/source.pal.json">Add Source</a>
+2. A:Copy this URL: altstore://source?url=https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/source.pal.json"
+2. B:[AltStore PAL Open](altstore://source?url=https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/source.pal.json)
 3. Install from AltStore
 
 ### Global
