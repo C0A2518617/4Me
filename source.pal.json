@@ -5,7 +5,7 @@
     "iconURL": "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Icons/YoBr_Icon_nena.webp",
     "website": "https://c0a2518617.github.io/YorunoBrowser_Official/",
     "fediUsername": "YorunoBrowser",
-    "tintColor": "#FFA500",
+    "tintColor": "#004D4D",
     "featuredApps": [
         "madeforme.Yoruno-Browser"
     ],
@@ -18,7 +18,7 @@
             "subtitle": "A one-handed web browser & file manager for iOS.",
             "localizedDescription": "YorunoBrowser is a premium iOS browser and file manager built for one-handed use. It includes HLS / media downloading, forced dark mode, ad blocking, popup blocking, tab groups, and file management tools.",
             "iconURL": "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Icons/YoBr_Icon_nena.webp",
-            "tintColor": "#FFA500",
+            "tintColor": "#004D4D",
             "screenshots": [
                 "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Imgs/BrowserTop1.webp",
                 "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Imgs/BrowserTop2.webp",
