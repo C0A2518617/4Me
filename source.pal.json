@@ -35,6 +35,14 @@
                     "size": 7159772,
                     "downloadURL": "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/refs/heads/main/releases/1.0/",
                     "localizedDescription": "Initial release of YorunoBrowser."
+                },
+                {
+                    "version": "1.1",
+                    "buildVersion": "1",
+                    "date": "2026-07-01T00:00:00Z",
+                    "size": 7250000,
+                    "downloadURL": "https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/refs/heads/main/releases/1.1/",
+                    "localizedDescription": "1. Performance & Stability Optimizations\nCPU Usage Reduction: Optimized to allow CPU usage to drop below 5%.\nThumbnail Generation & Thread Fixes: Fixed the infinite concurrent thumbnail generation in ContentGrid and resolved the issue where loadItems() would freeze/occupy the main thread.\nThumbnail Loop & Overheating Fix: Fixed a bug in ContentGrid where failing to display thumbnails caused an infinite loop, which led to smartphone overheating.\nBackground Audio Playback: Audio will no longer stop playing when switching tabs.\n2. New Features & Content Control\nRedirect Prevention (stopRedirect): Added a stopRedirectToggle next to the AdCleanerToggle. When turned ON, automatic page redirects are blocked, and a manual button to proceed is displayed instead.\nPlayback End Action: Added a PlaybackEndAction button next to \"Close\" in the ContentViewer, allowing users to choose between next, stop, or loop when a video ends.\nFolder Hiding Feature: Added the ability to hide specific folders from the ContentGrid. You can select a folder in Explorer and tap the \"slashed eye icon\" in the top right to hide it.\nPage Indicator: Added a Page Indicator to the ContentViewer.\n3. Ad Blocker & Premium Plan Updates\nAd-Block Links: Added links related to ad-blocking features.\nAd Cleaner Toggle (AdCleanerToggle): Added this toggle above the address bar. For Free/Standard plans, changes last for the current session only; for higher plans, the state is saved permanently in settings.\n4. UI, Design & Feedback Enhancements\nExtra Dim Mode (darkerToggle): Added a darkerToggle to both browserView and ContentViewer, allowing users to make the screen even darker than standard dark mode.\nDefault Theme Color: Changed the DefaultThemeColor to Orange.\nNew App Icons: Added new icon variations (nena Orange / Pink).\nHaptic/Operation Feedback: Added sensory feedback when changing volume and brightness.\nLayout Layout/Padding Fix: Fixed a layout bug on the initial Files/Explorer page where the vertical padding (Padding.y) became abnormally large when the MiniPlayer was active.\nForce Dark Mode Clean-up: Removed redundant/unnecessary filters from the ForceDarkMode feature.\n5. File Formats & Detection Expansion\n.ts File Thumbnail Support: The browser now generates thumbnails for .ts files in bulk when the HLS server is running (such as during content playback).\nExpanded ImageBulk Detection: Expanded the detection range for ImageBulk to recognize more images.\n6. Licensing & Localization\nLicense Migration: Migrated the license management to GitHub and updated it.\nMulti-language Support: Added official support for Japanese, French, German, and Traditional Chinese (zh-Hant)."
                 }
             ],
             "appPermissions": {
@@ -43,5 +51,12 @@
             }
         }
     ],
-    "news": []
+    "news": [
+            {
+                "id": "2026-07-01-update",
+                "title": "YorunoBrowser 1.1 Update Released!",
+                "date": "2026-07-01T00:00:00Z",
+                "content": "We are excited to announce the release of YorunoBrowser version 1.1! This update includes significant performance optimizations, new features, and various bug fixes to enhance your browsing experience. Key highlights include CPU usage reduction, new content control options, an improved ad blocker, and expanded file format support. We highly recommend updating to enjoy these improvements. Thank you for your continued support!"
+            }
+    ]
 }
