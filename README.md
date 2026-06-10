@@ -1,5 +1,4 @@
 # 🌙 YorunoBrowser
-
 > **The ultimate underground browser that will never pass the App Store** — A one-handed web browser & file manager for iOS
 
 [![Platform](https://img.shields.io/badge/Platform-iOS-black?logo=apple)](https://altstore.io)
@@ -12,7 +11,10 @@ I support iOS 26.3.1 and above.(But i have only iPhone17(26.5.1))
 YorunoBrowser is not on the App Store. Install via **AltStore**.
 ### EU / Japan Users (Recommended)
 1. Install **AltStore PAL** on your iPhone [![Distribution](https://img.shields.io/badge/Install-AltStore-blue)](https://altstore.io)
-2. Copy the URL :altstore://source?url=https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/source.pal.json
+2. Copy the URL 
+```
+altstore://source?url=https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/source.pal.json
+```
 3. Paste this on Safari's address bar then tap "Open"
 4. Install from AltStore
 * Update is automatic. Just open AltStore and check for updates when a new version is released.
@@ -28,9 +30,11 @@ YorunoBrowser is not on the App Store. Install via **AltStore**.
 * Update is not automatic. You need to download the new .ipa and install it via AltStore every time.
 
 ### Support
-- English / 日本語 / 繁体中文 / Français / Deutsch (when 1.1.0)
+- 🇬🇧 English / 🇯🇵 Japanese / 🇩🇪 German / 🇫🇷 French / 🇨🇳 Chinese (Traditional)
 - iOS 26.0 and above (iPhone 17(26.5.1) is the only test device)
-- Not compatible with iPadOS (iPad support may be considered in the future)
+- Not compatible with iPadOS
+- If you want to change lang, App of Settings/App/YorunoBrowser/Language
+- Age rating 15~17+ (varies by region) above 1.2.1 (Before Unrated)
 
 ## ✨ Key Features
 
@@ -70,6 +74,7 @@ YorunoBrowser is not on the App Store. Install via **AltStore**.
 ### ⚙️ Settings
 - Settings screen with clear descriptions — no guesswork
 - `SearchEngine` / `ThemeColor` / `Icon` / `ForceDarkMode` / `Gesture` / `AdsCleaner` / `ExceptionSite` / `ForceZoom` / `BlockSite` / `SelectToSearch` / `PaddingForOneHand` / `ContentViewer` / `ProximityGesture` / `DataBackup` / `Legal` / `Version`
+* Open search engine in new tab : disable means about:blank. enable means search engine's homepage.
 * Search Engine : Google / DuckDuckGo / Bing / YahooJapan
 * Theme Color: Blue/Red/Green/Orange/Purple/Pink/Yellow/16bitBlue?/turquoise blue/lightblue
 * Icon : 4 Icons and more
@@ -198,6 +203,7 @@ Available as a monthly subscription on Patreon.
 6. **Windows/Mac version?** — Would be nice to support someday, but not many people browse on a PC for... *that*.
 7. **Can I decompile it and unlock paid features for free?** — F**K YOU. Are you killing me?
 8. **Refund?** - Please check patreon's refund policy.
+9. **How to connect to Patreon?** - Open App, Others/Billing, Tap Login. If you feel missing tier, check tier, then tap refresh. finally, if you still feel missing, contact me.
 
 ## 📄 License
 This software is proprietary. Unauthorized reproduction or redistribution is prohibited.
