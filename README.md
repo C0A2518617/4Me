@@ -22,7 +22,7 @@ altstore://source?url=https://raw.githubusercontent.com/C0A2518617/YorunoBrowser
 
 ### Global
 1. Install **AltServer** on your PC
-2. Install **AltStore** on your iPhone
+2. Install **AltStore Classic** on your iPhone
 3. Download the `.ipa` file from https://github.com/C0A2518617/YorunoBrowser_Official/releases
 4. Install the IPA via AltStore
 
@@ -31,7 +31,7 @@ altstore://source?url=https://raw.githubusercontent.com/C0A2518617/YorunoBrowser
 
 ### Support
 - 🇬🇧 English / 🇯🇵 Japanese / 🇩🇪 German / 🇫🇷 French / 🇨🇳 Chinese (Traditional)
-- iOS 26.0 and above (iPhone 17(26.5.1) is the only test device)
+- iOS 26.3.1 and above (iPhone 17(26.5.1) is the only test device)
 - Not compatible with iPadOS
 - If you want to change lang, App of Settings/App/YorunoBrowser/Language
 - Age rating 15~17+ (varies by region) above 1.2.1 (Before Unrated)
