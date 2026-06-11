@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "updated_at": "2026-06-11",
   "rules": [
     {"trigger":{"url-filter":".*.doubleclick.net.*","load-type":["third-party"]},"action":{"type":"block"}},
@@ -134,6 +134,7 @@
     {"trigger":{"url-filter":".*"},"action":{"type":"css-display-none","selector":".fam8_scrbnr,.fam8_scrbnr .scrbnr_img,.fam8_scrbnr .scrbnr_cover"}},
     {"trigger":{"url-filter":".*"},"action":{"type":"css-display-none","selector":"#veot_contents_668_171,iframe[src*='advortex.cloud']"}},
     {"trigger":{"url-filter":".*"},"action":{"type":"css-display-none","selector":".gallery-ad-block,[id^='gallery-ad-block']"}},
-    {"trigger":{"url-filter":".*","if-domain":["*hitomi.la"]},"action":{"type":"css-display-none","selector":"#container,a.exo-native-widget-item,div[style*='2147483647']"}}
+    {"trigger":{"url-filter":".*","if-domain":["*hitomi.la"]},"action":{"type":"css-display-none","selector":"#container,a.exo-native-widget-item,div[style*='2147483647']"}},
+    {"trigger":{"url-filter":".*","if-domain":["*hitomi.la"]},"action":{"type":"css-display-none","selector":"iframe"}}
   ]
 }
