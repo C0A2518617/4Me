@@ -4,3 +4,4 @@
 **/.venv/**
 **.secret.md
 generate_secret_tier_keys.py
+secret-tier-input.json
