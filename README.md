@@ -6,8 +6,8 @@
 # 🌙 YorunoBrowser
 
 > **The Browser for Night Owls.**
-> Built for one-handed browsing, dark rooms, and people who save too much media.
-YorunoBrowser is an iOS browser and media manager designed around a simple idea:
+> Built for one-handed browsing and dark rooms.
+YorunoBrowser is an iOS browser designed around a simple idea:
  
 **Your thumb should reach everything.**
 Most browsers are designed around websites.
@@ -46,35 +46,6 @@ Features include:
 
 ---
 
-### 📥 Save What Matters
-
-When supported by the website:
-
-* **Save videos(MP4 and Stream)**
-* **Save audio**
-* **Save images**
-* **Manage downloads locally**
-
-Your files stay on your device.
-![DownloadConsent](https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Imgs/downloadConsent.webp)
-
----
-
-### 📁 Browser + File Manager
-
-YorunoBrowser is not just a browser.
-
-It also includes:
-
-* File explorer
-* Media viewer
-* Grid browsing
-* Sorting and filtering
-* Conversion tools
-* Local media organization
-![ContentViewer](https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/refs/heads/main/Imgs/contentviewer.webp)
----
-
 ### 📖 Comic Reader
 
 Some websites are slow.
@@ -95,7 +66,6 @@ YorunoBrowser is for people who:
 * Browse mostly with one hand
 * Use large phones
 * Stay up late
-* Save lots of media
 * Want more control than Safari offers
 
 ---
@@ -136,6 +106,6 @@ Official Page : https://c0a2518617.github.io/YorunoBrowser_Official/
 
 ## FAQ
 1. How much is YorunoBrowser?
-- Basically free, but you want more download and features, you can support me on Patreon.
+- Basically free. If you want to support development, you can support me on Patreon.
 2. Why is YorunoBrowser not on the App Store?
-- Because of the download feature, it will be rejected by Apple. So I distribute it via AltStore.
+- YorunoBrowser is distributed independently via AltStore.
