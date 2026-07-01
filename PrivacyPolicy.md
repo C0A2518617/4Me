@@ -1,15 +1,15 @@
-# Privacy Policy for Yoruno Browser
+# Privacy Policy for 4Me
 
 Last updated: May 27, 2026
 
-We are the Developer of Yoruno Browser ("we", "our", or "us"). We respect your privacy and are committed to protecting any limited information processed through our mobile application, Yoruno Browser (the "App").
+We are the Developer of 4Me ("we", "our", or "us"). We respect your privacy and are committed to protecting any limited information processed through our mobile application, 4Me (the "App").
 
 Please read this Privacy Policy carefully to understand our practices regarding your data.
 
 ---
 
 ## 1. Information We DO NOT Collect
-Yoruno Browser is designed with a privacy-first approach. We **DO NOT** collect, store, or monitor any of the following personal data:
+4Me is designed with a privacy-first approach. We **DO NOT** collect, store, or monitor any of the following personal data:
 - Your browsing history, search queries, or bookmarked sites.
 - Your downloaded media, files, or content.
 - Your passwords, credentials, or sensitive personal information.
@@ -34,5 +34,5 @@ We reserve the right to update this Privacy Policy at any time. Any changes will
 ## 6. Contact Us
 If you have any questions or concerns about this Privacy Policy, please contact us at:
 
-- **Developer:** Developer of Yoruno Browser
+- **Developer:** Developer of 4Me
 - **Email:** mcworld6002@gmail.com

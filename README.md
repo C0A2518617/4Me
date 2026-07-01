@@ -3,20 +3,20 @@
 [![Distribution](https://img.shields.io/badge/Install-AltStore-blue)](https://altstore.io)
 [![Billing](https://img.shields.io/badge/Billing-Patreon-orange?logo=patreon)](https://patreon.com)
 
-# 🌙 YorunoBrowser
+# 🌙 4Me
 
 > **The Browser for Night Owls.**
 > Built for one-handed browsing and dark rooms.
-YorunoBrowser is an iOS browser designed around a simple idea:
+4Me is an iOS browser designed around a simple idea:
  
 **Your thumb should reach everything.**
 Most browsers are designed around websites.
-YorunoBrowser is designed around how people actually use their phones at 2AM.
+4Me is designed around how people actually use their phones at 2AM.
 
-## Why YorunoBrowser?
+## Why 4Me?
 Modern phones are huge.
 Yet most browsers still place important controls at the top of the screen.
-YorunoBrowser moves the experience where your thumb already is.
+4Me moves the experience where your thumb already is.
 
 ### 🖐 One-Handed First
 
@@ -28,7 +28,7 @@ YorunoBrowser moves the experience where your thumb already is.
 No finger gymnastics.
 
 No phone-dropping acrobatics.
-![One-Handed Navigation](https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Imgs/paddingForOneHand.webp)
+![One-Handed Navigation](https://raw.githubusercontent.com/C0A2518617/4Me/main/Imgs/paddingForOneHand.webp)
 
 ---
 
@@ -42,7 +42,7 @@ Features include:
 * Darker Overlay
 * Super Darker OLED Mode1
 * Reduced eye strain during night use
-![Darker Overlay](https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Imgs/darkerToggle.webp)
+![Darker Overlay](https://raw.githubusercontent.com/C0A2518617/4Me/main/Imgs/darkerToggle.webp)
 
 ---
 
@@ -56,12 +56,12 @@ Some are both.
 
 Comic Reader provides a cleaner reading experience with lower power consumption and faster navigation.
 
-![ComicReader](https://raw.githubusercontent.com/C0A2518617/YorunoBrowser_Official/main/Imgs/comicReader.webp)
+![ComicReader](https://raw.githubusercontent.com/C0A2518617/4Me/main/Imgs/comicReader.webp)
 ---
 
 ## Who Is This For?
 
-YorunoBrowser is for people who:
+4Me is for people who:
 
 * Browse mostly with one hand
 * Use large phones
@@ -72,7 +72,7 @@ YorunoBrowser is for people who:
 
 ## Who Is This NOT For?
 
-YorunoBrowser is probably not for you if:
+4Me is probably not for you if:
 
 * Safari already does everything you need
 * You only browse a few websites
@@ -82,13 +82,13 @@ YorunoBrowser is probably not for you if:
 
 ## 📲 Installation
 - Check below link.
-https://c0a2518617.github.io/YorunoBrowser_Official/
+https://c0a2518617.github.io/4Me/
 * .ipa release is faster than AltStorePAL because no need for authentication.
 ### Support(Latest Version)
 - 🇬🇧 English / 🇯🇵 Japanese / 🇩🇪 German / 🇫🇷 French / 🇨🇳 Chinese (Traditional)
 - iOS 26.3.1 and above 
 - Not compatible with iPadOS
-- If you want to change lang, App of Settings/App/YorunoBrowser/Language
+- If you want to change lang, App of Settings/App/4Me/Language
 - Age rating 15~17+ (varies by region) above 1.3.0 (Before Unrated)
 
 ---
@@ -99,13 +99,13 @@ https://c0a2518617.github.io/YorunoBrowser_Official/
 
 ## Links
 This software is proprietary. Unauthorized reproduction or redistribution is prohibited.
-Privacy Policy: https://c0a2518617.github.io/YorunoBrowser_Official/PrivacyPolicy.md
-Terms of Service: https://c0a2518617.github.io/YorunoBrowser_Official/TermsOfService.md
-License : https://c0a2518617.github.io/YorunoBrowser_Official/License.md
-Official Page : https://c0a2518617.github.io/YorunoBrowser_Official/
+Privacy Policy: https://c0a2518617.github.io/4Me/PrivacyPolicy.md
+Terms of Service: https://c0a2518617.github.io/4Me/TermsOfService.md
+License : https://c0a2518617.github.io/4Me/License.md
+Official Page : https://c0a2518617.github.io/4Me/
 
 ## FAQ
-1. How much is YorunoBrowser?
+1. How much is 4Me?
 - Basically free. If you want to support development, you can support me on Patreon.
-2. Why is YorunoBrowser not on the App Store?
-- YorunoBrowser is distributed independently via AltStore.
+2. Why is 4Me not on the App Store?
+- 4Me is distributed independently via AltStore.

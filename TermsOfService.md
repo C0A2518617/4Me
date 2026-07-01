@@ -1,12 +1,12 @@
 AGREEMENT TO OUR LEGAL TERMS
 
-We are Developer of Yoruno Browser.
+We are Developer of 4Me.
 
-We operate the mobile application Yoruno Browser (the 'App'), as well as any other related products and services that refer or link to these legal terms (the 'Legal Terms') (collectively, the 'Services').
+We operate the mobile application 4Me (the 'App'), as well as any other related products and services that refer or link to these legal terms (the 'Legal Terms') (collectively, the 'Services').
 
 You can contact us by email at mcworld6002@gmail.com.
 
-These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ('you'), and Developer of Yoruno Browser, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
+These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ('you'), and Developer of 4Me, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
 
 When open the browser, we will notice to you
 
@@ -231,7 +231,7 @@ We reserve the right, but not the obligation, to: (1) monitor the Services for v
 
 15. PRIVACY POLICY
 
-We care about data privacy and security. Please review our Privacy Policy: https://github.com/C0A2518617/YorunoBrowser_Official/blob/main/PrivacyPolicy.md. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in the United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in the United States, then through your continued use of the Services, you are transferring your data to the United States, and you expressly consent to have your data transferred to and processed in the United States.
+We care about data privacy and security. Please review our Privacy Policy: https://github.com/C0A2518617/4Me/blob/main/PrivacyPolicy.md. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in the United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in the United States, then through your continued use of the Services, you are transferring your data to the United States, and you expressly consent to have your data transferred to and processed in the United States.
 
 16. COPYRIGHT INFRINGEMENTS
 
@@ -251,11 +251,11 @@ We cannot guarantee the Services will be available at all times. We may experien
 
 19. GOVERNING LAW
 
-These Legal Terms shall be governed by and defined following the laws of Japan. Developer of Yoruno Browser and yourself irrevocably consent that the courts of Japan shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these Legal Terms.
+These Legal Terms shall be governed by and defined following the laws of Japan. Developer of 4Me and yourself irrevocably consent that the courts of Japan shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these Legal Terms.
 
 20. DISPUTE RESOLUTION
 
-You agree to irrevocably submit all disputes related to these Legal Terms or the legal relationship established by these Legal Terms to the jurisdiction of the Japan courts. Developer of Yoruno Browser shall also maintain the right to bring proceedings as to the substance of the matter in the courts of the country where you reside or, if these Legal Terms are entered into in the course of your trade or profession, the state of your principal place of business.
+You agree to irrevocably submit all disputes related to these Legal Terms or the legal relationship established by these Legal Terms to the jurisdiction of the Japan courts. Developer of 4Me shall also maintain the right to bring proceedings as to the substance of the matter in the courts of the country where you reside or, if these Legal Terms are entered into in the course of your trade or profession, the state of your principal place of business.
 
 21. CORRECTIONS
 
@@ -295,6 +295,6 @@ These Legal Terms and any policies or operating rules posted by us on the Servic
 
 In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:
 
-Developer of Yoruno Browser
+Developer of 4Me
 Japan
 mcworld6002@gmail.com

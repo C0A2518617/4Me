@@ -1,10 +1,10 @@
-# YorunoBrowser — Proprietary Software License
+# 4Me — Proprietary Software License
 
-Copyright © 2024–2026 YorunoBrowser Developer. All rights reserved.
+Copyright © 2024–2026 4Me Developer. All rights reserved.
 
 ## Grant of License
 
-Subject to the terms of your active subscription plan (Free, Standard, Pro, Premium, or Supporter), you are granted a **non-exclusive, non-transferable, revocable license** to install and use YorunoBrowser on Apple iOS devices that you personally own or control.
+Subject to the terms of your active subscription plan (Free, Standard, Pro, Premium, or Supporter), you are granted a **non-exclusive, non-transferable, revocable license** to install and use 4Me on Apple iOS devices that you personally own or control.
 
 ## Restrictions
 
