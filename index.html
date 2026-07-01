@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4Me — The browser Apple would never ship.</title>
-<meta name="description" content="4Meは、夜にベッドでiPhoneを使う人のための片手ブラウザ。強制ダークモードとComicReaderを搭載し、AltStoreで配布中。">
-<meta property="og:title" content="4Me — 夜のための、片手ブラウザ。">
-<meta property="og:description" content="親指だけで完結。白いサイトは夜になる。重い漫画サイトも読みやすく。App Storeにはない、AltStoreで配布中。">
+<title>4Me — 片手で使いやすいiPhoneブラウザ。</title>
+<meta name="description" content="4Meは、片手操作と読みやすさを重視したiPhone向けブラウザ。ComicReader、表示調整、ジェスチャー操作を搭載し、AltStoreで配布中。">
+<meta property="og:title" content="4Me — 片手で使いやすいiPhoneブラウザ。">
+<meta property="og:description" content="親指だけで操作しやすい。重い漫画サイトも読みやすく。ComicReaderと表示調整を搭載し、AltStoreで配布中。">
 <meta property="og:type" content="website">
 <link id="canonicalUrl" rel="canonical" href="https://c0a2518617.github.io/4Me/">
 <link rel="alternate" hreflang="ja" href="https://c0a2518617.github.io/4Me/?lang=ja">
@@ -20,17 +20,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0A0D1C;
-  --bg2:#111630;
-  --panel:#141A38;
-  --panel2:#0B0F22;
-  --line:#252C50;
-  --moon:#FFD98C;
-  --neon:#5BD9E8;
-  --text:#E9EAF3;
-  --muted:#9098B6;
+  --bg:#F6FAF7;
+  --bg2:#FFFFFF;
+  --panel:#FFFFFF;
+  --panel2:#EDF7F0;
+  --line:#D8E7DD;
+  --moon:#34C759;
+  --neon:#168A3A;
+  --text:#14221A;
+  --muted:#607067;
   --danger:#FF7A8A;
-  --ok:#92E6A7;
+  --ok:#34C759;
   --radius:18px;
   --disp:"Shippori Mincho",serif;
   --body:"Zen Kaku Gothic New",sans-serif;
@@ -39,34 +39,34 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:28px}
 body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.8;overflow-x:hidden;padding-bottom:96px}
-::selection{background:var(--moon);color:#1a1303}
+::selection{background:var(--moon);color:#fff}
 a{color:var(--neon);text-decoration:none}
 a:hover{text-decoration:underline}
 img{display:block;max-width:100%}
 :focus-visible{outline:2px solid var(--moon);outline-offset:3px;border-radius:6px}
 #dim{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .35s ease;z-index:200}
-body.darker #dim{opacity:.45}
+body.darker #dim{opacity:.18}
 .sky{position:fixed;inset:0;z-index:-1;overflow:hidden}
-.sky::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 500px at 80% -10%,rgba(91,217,232,.12),transparent 60%),radial-gradient(700px 700px at 12% 8%,rgba(255,217,140,.09),transparent 55%),linear-gradient(180deg,#0A0D1C 0%,#0C1024 55%,#0A0D1C 100%)}
-.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#d7ddff;opacity:.45;animation:tw 4s ease-in-out infinite}
+.sky::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 500px at 82% -12%,rgba(52,199,89,.16),transparent 62%),radial-gradient(760px 560px at 8% 4%,rgba(255,255,255,.88),transparent 58%),linear-gradient(180deg,#F6FAF7 0%,#EEF8F1 50%,#F6FAF7 100%)}
+.star{display:none}
 @keyframes tw{0%,100%{opacity:.12}50%{opacity:.75}}
 .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
 section{padding:88px 0}.hr{border:0;border-top:1px solid var(--line)}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--moon);text-transform:uppercase;margin-bottom:14px}
 h1,h2{font-family:var(--disp);letter-spacing:.03em}h2{font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.45;margin-bottom:18px}.lede{color:var(--muted);max-width:44em;margin-bottom:40px}.focus{color:var(--moon);font-weight:700}
-header{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 22px;max-width:1060px;margin:0 auto}.brand{font-family:var(--disp);font-weight:800;font-size:18px;letter-spacing:.06em;color:var(--text);white-space:nowrap}.moon-mark{color:var(--moon)}.head-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}.ver,.pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);padding:3px 10px;border-radius:99px}.pill{color:var(--moon);border-color:rgba(255,217,140,.35)}.lang-switch select{font-family:var(--mono);font-size:11px;color:var(--text);background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:99px;padding:5px 28px 5px 10px;cursor:pointer}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.hero{padding:44px 0 78px}.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:46px;align-items:center}.hero h1{font-weight:800;font-size:clamp(40px,7vw,76px);line-height:1.18}.hero h1 em{font-style:normal;color:var(--moon)}.hero .sub{color:var(--muted);font-size:clamp(16px,2vw,18px);margin:24px 0 10px;max-width:34em}.hero .note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:30px}.hero .note s{opacity:.6}.cta-row{display:flex;gap:14px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:14px;font-weight:700;font-size:15px;border:1px solid var(--line);transition:transform .15s ease,box-shadow .15s ease}.btn:hover{text-decoration:none;transform:translateY(-2px)}.btn-moon{background:var(--moon);color:#241a02;border-color:transparent;box-shadow:0 6px 28px rgba(255,217,140,.25)}.btn-ghost{color:var(--text);background:rgba(255,255,255,.03)}.hero-card{position:relative}.phone{width:min(310px,82%);margin:0 auto;border-radius:42px;border:1px solid var(--line);background:var(--bg2);padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.56);transform:rotate(-3deg)}.phone img{border-radius:32px;aspect-ratio:9/19.5;object-fit:cover;background:#0d1226}.crescent{position:absolute;width:340px;height:340px;border-radius:50%;right:-30px;top:-60px;z-index:-1;background:radial-gradient(circle at 38% 40%,var(--moon),#c79b45 70%);box-shadow:0 0 120px 30px rgba(255,217,140,.18);-webkit-mask:radial-gradient(circle at 72% 32%,transparent 0 58%,#000 60%);mask:radial-gradient(circle at 72% 32%,transparent 0 58%,#000 60%);opacity:.9}.caption{text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:14px}
-.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(17,22,48,.5)}.strip ul{display:flex;flex-wrap:wrap;gap:10px 0;list-style:none;max-width:1060px;margin:0 auto;padding:14px 22px}.strip li{font-family:var(--mono);font-size:12px;color:var(--muted);padding:0 18px;border-right:1px solid var(--line);white-space:nowrap}.strip li:first-child{padding-left:0}.strip li:last-child{border-right:0}
-.pitch{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}.pitch-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;overflow:hidden}.pitch-card img{border-radius:14px;margin-bottom:18px;aspect-ratio:16/10;object-fit:cover;background:var(--panel2)}.pitch-card h3{font-size:17px;margin-bottom:8px}.pitch-card p{font-size:13.5px;color:var(--muted);line-height:1.75}.pitch-card.main{grid-column:span 2;display:grid;grid-template-columns:.95fr 1.05fr;gap:22px;align-items:center}.pitch-card.main img{margin:0;aspect-ratio:9/15;max-height:440px;justify-self:center}.tag{display:inline-flex;font-family:var(--mono);font-size:10px;color:var(--neon);border:1px solid rgba(91,217,232,.35);padding:2px 8px;border-radius:99px;margin-bottom:10px}
+header{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 22px;max-width:1060px;margin:0 auto}.brand{font-family:var(--disp);font-weight:800;font-size:18px;letter-spacing:.06em;color:var(--text);white-space:nowrap}.moon-mark{color:var(--moon)}.head-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}.ver,.pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);padding:3px 10px;border-radius:99px}.pill{color:var(--neon);border-color:rgba(52,199,89,.35);background:rgba(255,255,255,.7)}.lang-switch select{font-family:var(--mono);font-size:11px;color:var(--text);background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:99px;padding:5px 28px 5px 10px;cursor:pointer}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hero{padding:44px 0 78px}.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:46px;align-items:center}.hero h1{font-weight:800;font-size:clamp(38px,6.4vw,66px);line-height:1.16}.hero h1 em{font-style:normal;color:var(--moon)}.hero .sub{color:var(--muted);font-size:clamp(16px,2vw,18px);margin:24px 0 10px;max-width:34em}.hero .note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:30px}.hero .note s{opacity:.6}.cta-row{display:flex;gap:14px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:14px;font-weight:700;font-size:15px;border:1px solid var(--line);transition:transform .15s ease,box-shadow .15s ease}.btn:hover{text-decoration:none;transform:translateY(-2px)}.btn-moon{background:var(--moon);color:#fff;border-color:transparent;box-shadow:0 8px 28px rgba(52,199,89,.28)}.btn-ghost{color:var(--text);background:rgba(255,255,255,.75)}.hero-card{position:relative;overflow:hidden}.phone{width:min(310px,82%);margin:0 auto;border-radius:42px;border:1px solid var(--line);background:var(--bg2);padding:12px;box-shadow:0 24px 70px rgba(20,34,26,.14);transform:rotate(-2deg)}.phone img{border-radius:32px;aspect-ratio:9/19.5;object-fit:cover;background:#eef8f1}.phone-screen{aspect-ratio:9/19.5;border-radius:32px;background:linear-gradient(180deg,#fbfffc,#eef8f1);padding:18px 16px;display:flex;flex-direction:column;gap:14px;overflow:hidden}.phone-status{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;color:var(--muted)}.phone-search{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;color:var(--muted);font-size:13px;box-shadow:0 8px 24px rgba(20,34,26,.07)}.phone-title{font-family:var(--disp);font-size:28px;line-height:1.15;color:var(--text)}.phone-list{display:grid;gap:10px}.phone-row{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:11px;box-shadow:0 8px 22px rgba(20,34,26,.06)}.phone-icon{width:34px;height:34px;border-radius:12px;background:rgba(52,199,89,.13);color:var(--moon);display:grid;place-items:center;font-weight:800}.phone-row b{display:block;font-size:12px;line-height:1.2}.phone-row span{display:block;font-size:10px;color:var(--muted);line-height:1.4;margin-top:2px}.phone-toolbar{margin-top:auto;background:#14221A;border-radius:22px;padding:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;color:#DDEBE1}.phone-toolbar span{display:grid;place-items:center;border-radius:16px;min-height:36px;font-size:10px}.phone-toolbar span:first-child{background:var(--moon);color:#fff}.crescent{position:absolute;width:320px;height:320px;border-radius:50%;right:0;top:-48px;z-index:-1;background:radial-gradient(circle at 38% 40%,rgba(52,199,89,.22),rgba(52,199,89,.06) 68%,transparent 70%);box-shadow:none;opacity:.95}.caption{text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:14px}
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.58)}.strip ul{display:flex;flex-wrap:wrap;gap:10px 0;list-style:none;max-width:1060px;margin:0 auto;padding:14px 22px}.strip li{font-family:var(--mono);font-size:12px;color:var(--muted);padding:0 18px;border-right:1px solid var(--line);white-space:nowrap}.strip li:first-child{padding-left:0}.strip li:last-child{border-right:0}
+.pitch{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}.pitch-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;overflow:hidden}.pitch-card img{border-radius:14px;margin-bottom:18px;aspect-ratio:16/10;object-fit:cover;background:var(--panel2)}.pitch-card h3{font-size:17px;margin-bottom:8px}.pitch-card p{font-size:13.5px;color:var(--muted);line-height:1.75}.pitch-card.main{grid-column:span 2;display:grid;grid-template-columns:.95fr 1.05fr;gap:22px;align-items:center}.pitch-card.main img{margin:0;aspect-ratio:9/15;max-height:440px;justify-self:center}.tag{display:inline-flex;font-family:var(--mono);font-size:10px;color:var(--neon);border:1px solid rgba(52,199,89,.35);padding:2px 8px;border-radius:99px;margin-bottom:10px}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px}.panel img{border-radius:18px;background:var(--panel2)}.checks{list-style:none;display:grid;gap:12px;margin-top:22px}.checks li{position:relative;padding-left:30px;color:var(--muted);font-size:14px}.checks li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ok);font-weight:700}.warning{border-color:rgba(255,217,140,.5);background:linear-gradient(180deg,rgba(255,217,140,.06),rgba(20,26,56,.95))}
 .mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.mini{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}.mini h3{font-size:14px;margin-bottom:6px}.mini p{font-size:12.5px;color:var(--muted);line-height:1.7}.mini img{border-radius:12px;margin-bottom:12px;aspect-ratio:1.2;object-fit:cover;background:var(--panel2)}
-.free-band{background:linear-gradient(180deg,rgba(255,217,140,.06),rgba(255,217,140,.02));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.free-inner{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding:44px 0}.free-inner .lead{font-family:var(--disp);font-weight:800;font-size:clamp(22px,3.6vw,30px);letter-spacing:.03em}.free-inner em{font-style:normal;color:var(--moon)}.free-inner p{color:var(--muted);font-size:14px;margin-top:8px;max-width:36em}
-.install{background:rgba(17,22,48,.35)}.video-guide{display:flex;align-items:center;justify-content:space-between;gap:18px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:-20px 0 24px}.video-guide b{display:block;font-size:15px}.video-guide span{font-size:13px;color:var(--muted)}.video-guide .btn{padding:10px 18px;font-size:13px;white-space:nowrap}.pal-card{background:var(--panel);border:1px solid var(--moon);box-shadow:0 0 0 1px var(--moon),0 16px 60px rgba(255,217,140,.10);border-radius:var(--radius);padding:32px 30px;margin-bottom:18px}.rsub{font-family:var(--mono);font-size:11px;color:var(--moon);letter-spacing:.14em;display:block;margin-bottom:6px}.pal-card h3{font-size:20px;margin-bottom:18px}.iflow{list-style:none;counter-reset:i;display:grid;gap:14px}.iflow li{counter-increment:i;position:relative;padding:16px 16px 16px 64px;background:var(--panel2);border:1px solid var(--line);border-radius:14px}.iflow li::before{content:counter(i);position:absolute;left:16px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:16px;font-weight:700;color:#241a02;background:var(--moon);width:34px;height:34px;border-radius:50%;display:grid;place-items:center}.iflow b{display:block;font-size:15px}.iflow span{font-size:13px;color:var(--muted)}.copybox{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:stretch;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:12px 0 4px}.copybox code{font-family:var(--mono);font-size:11px;color:var(--neon);min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.copybox button{font-family:var(--mono);font-size:11px;background:var(--line);color:var(--text);border:0;border-radius:10px;padding:0 18px;min-width:132px;min-height:40px;cursor:pointer}.copybox button:hover{background:var(--moon);color:#241a02}.alt-route{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px}.alt-route summary,.faq summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}.alt-route summary::-webkit-details-marker,.faq summary::-webkit-details-marker{display:none}.alt-route summary::after,.faq summary::after{content:"＋";color:var(--moon);font-family:var(--mono);transition:transform .2s}.alt-route[open] summary::after,.faq[open] summary::after{transform:rotate(45deg)}.alt-route ol{margin:16px 0 0;padding-left:1.2em;font-size:14px;color:var(--muted)}.fineprint{font-size:12px;color:var(--muted);margin-top:14px}
+.free-band{background:linear-gradient(180deg,rgba(52,199,89,.09),rgba(52,199,89,.03));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.free-inner{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding:44px 0}.free-inner .lead{font-family:var(--disp);font-weight:800;font-size:clamp(22px,3.6vw,30px);letter-spacing:.03em}.free-inner em{font-style:normal;color:var(--moon)}.free-inner p{color:var(--muted);font-size:14px;margin-top:8px;max-width:36em}
+.install{background:rgba(237,247,240,.7)}.video-guide{display:flex;align-items:center;justify-content:space-between;gap:18px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:-20px 0 24px}.video-guide b{display:block;font-size:15px}.video-guide span{font-size:13px;color:var(--muted)}.video-guide .btn{padding:10px 18px;font-size:13px;white-space:nowrap}.pal-card{background:var(--panel);border:1px solid var(--moon);box-shadow:0 0 0 1px rgba(52,199,89,.18),0 16px 50px rgba(52,199,89,.12);border-radius:var(--radius);padding:32px 30px;margin-bottom:18px}.rsub{font-family:var(--mono);font-size:11px;color:var(--moon);letter-spacing:.14em;display:block;margin-bottom:6px}.pal-card h3{font-size:20px;margin-bottom:18px}.iflow{list-style:none;counter-reset:i;display:grid;gap:14px}.iflow li{counter-increment:i;position:relative;padding:16px 16px 16px 64px;background:var(--panel2);border:1px solid var(--line);border-radius:14px}.iflow li::before{content:counter(i);position:absolute;left:16px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:16px;font-weight:700;color:#fff;background:var(--moon);width:34px;height:34px;border-radius:50%;display:grid;place-items:center}.iflow b{display:block;font-size:15px}.iflow span{font-size:13px;color:var(--muted)}.copybox{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:stretch;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:12px 0 4px}.copybox code{font-family:var(--mono);font-size:11px;color:var(--neon);min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.copybox button{font-family:var(--mono);font-size:11px;background:var(--line);color:var(--text);border:0;border-radius:10px;padding:0 18px;min-width:132px;min-height:40px;cursor:pointer}.copybox button:hover{background:var(--moon);color:#fff}.alt-route{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px}.alt-route summary,.faq summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}.alt-route summary::-webkit-details-marker,.faq summary::-webkit-details-marker{display:none}.alt-route summary::after,.faq summary::after{content:"＋";color:var(--moon);font-family:var(--mono);transition:transform .2s}.alt-route[open] summary::after,.faq[open] summary::after{transform:rotate(45deg)}.alt-route ol{margin:16px 0 0;padding-left:1.2em;font-size:14px;color:var(--muted)}.fineprint{font-size:12px;color:var(--muted);margin-top:14px}
 details.faq{border-bottom:1px solid var(--line)}.faq summary{padding:20px 4px}.faq p{padding:0 4px 20px;color:var(--muted);font-size:14px}
 footer{padding:60px 0 40px;color:var(--muted);font-size:13px}.cols{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}footer ul{list-style:none;display:flex;gap:20px;flex-wrap:wrap}
-.thumb-bar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;background:rgba(17,22,48,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:99px;padding:8px;box-shadow:0 14px 50px rgba(0,0,0,.55);z-index:300;max-width:calc(100vw - 24px)}.thumb-bar a,.thumb-bar button{font-family:var(--body);font-size:13px;font-weight:700;color:var(--muted);padding:10px 16px;border-radius:99px;border:0;background:transparent;cursor:pointer;white-space:nowrap}.thumb-bar a:hover{color:var(--text);text-decoration:none}.thumb-bar .tb-cta{background:var(--moon);color:#241a02}.thumb-bar .tb-darker{font-size:16px;padding:8px 12px}.thumb-bar .tb-darker[aria-pressed="true"]{background:var(--line);color:var(--moon)}
+.thumb-bar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:99px;padding:8px;box-shadow:0 14px 42px rgba(20,34,26,.16);z-index:300;max-width:calc(100vw - 24px)}.thumb-bar a,.thumb-bar button{font-family:var(--body);font-size:13px;font-weight:700;color:var(--muted);padding:10px 16px;border-radius:99px;border:0;background:transparent;cursor:pointer;white-space:nowrap}.thumb-bar a:hover{color:var(--text);text-decoration:none}.thumb-bar .tb-cta{background:var(--moon);color:#fff}.thumb-bar .tb-darker{font-size:13px;padding:10px 12px}.thumb-bar .tb-darker[aria-pressed="true"]{background:var(--line);color:var(--neon)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-@media (max-width:920px){.hero-grid,.split{grid-template-columns:1fr}.hero-card{order:-1}.phone{transform:none;width:min(240px,70%)}.crescent{width:220px;height:220px;right:-30px;top:-60px}.pitch{grid-template-columns:1fr 1fr}.pitch-card.main{grid-column:1/-1;grid-template-columns:1fr}.mini-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:920px){.hero-grid,.split{grid-template-columns:1fr}.phone{transform:none;width:min(240px,70%)}.crescent{width:220px;height:220px;right:-30px;top:-60px}.pitch{grid-template-columns:1fr 1fr}.pitch-card.main{grid-column:1/-1;grid-template-columns:1fr}.mini-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){section{padding:64px 0}.head-right .pill{display:none}.pitch,.mini-grid{grid-template-columns:1fr}.strip li{border-right:0;padding-left:0}.thumb-bar .tb-hide-sm{display:none}.video-guide{align-items:flex-start;flex-direction:column}.video-guide .btn{justify-content:center;width:100%}.copybox{grid-template-columns:1fr}.copybox button{width:100%}.copybox code{white-space:normal;word-break:break-all}}
 </style>
 </head>
@@ -76,37 +76,49 @@ footer{padding:60px 0 40px;color:var(--muted);font-size:13px}.cols{display:flex;
 </div>
 <div id="dim" aria-hidden="true"></div>
 <header>
-  <div class="brand"><span class="moon-mark">🌙</span> 4Me</div>
-  <div class="head-right"><span class="pill">The browser Apple would never ship</span><span class="ver">v1.4.1 / iOS 26.3.1+</span><label class="lang-switch"><span class="sr-only">Language</span><select id="langSelect" aria-label="Language"><option value="ja">日本語</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="zh">繁體中文</option></select></label></div>
+  <div class="brand"><span class="moon-mark">●</span> 4Me</div>
+  <div class="head-right"><span class="pill">One-handed browser for iPhone</span><span class="ver">v1.4.1 / iOS 26.3.1+</span><label class="lang-switch"><span class="sr-only">Language</span><select id="langSelect" aria-label="Language"><option value="ja">日本語</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="zh">繁體中文</option></select></label></div>
 </header>
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow">Underground Browser for iPhone</p>
-      <h1>夜のための、<br><em>片手</em>ブラウザ。</h1>
-      <p class="sub">親指だけで完結する。白いサイトは夜になる。重い漫画サイトも、広告だらけのページも、ベッドの中で読みやすく。</p>
-      <p class="note"><s>App Store</s> → AltStoreで配布中。審査には、たぶん永遠に通らない。</p>
+      <p class="eyebrow">One-handed Browser for iPhone</p>
+      <h1>片手で使いやすい、<br><em>iPhone</em>ブラウザ。</h1>
+      <p class="sub">親指だけで操作しやすい。重い漫画サイトも、広告だらけのページも、すっきり読みやすく。</p>
+      <p class="note">AltStoreで配布中。iPhoneに数分で追加できます。</p>
       <div class="cta-row"><a class="btn btn-moon" href="#install">入れ方を見る →</a><a class="btn btn-ghost" href="#why">何が違う? ↓</a></div>
     </div>
     <div class="hero-card">
       <div class="crescent" aria-hidden="true"></div>
-      <div class="phone"><img src="Imgs/darkerToggle.webp" alt="4MeのDarkerトグル画面"></div>
-      <p class="caption">Try the 🌙 button below. It gets darker.</p>
+      <div class="phone" role="img" aria-label="4Meの片手操作画面">
+        <div class="phone-screen">
+          <div class="phone-status"><span>4Me</span><span>100%</span></div>
+          <div class="phone-search">Search or enter URL</div>
+          <div class="phone-title">Ready for one hand.</div>
+          <div class="phone-list">
+            <div class="phone-row"><span class="phone-icon">1</span><div><b>Reachable controls</b><span>Back, tabs, search</span></div></div>
+            <div class="phone-row"><span class="phone-icon">2</span><div><b>ComicReader</b><span>Focused image reading</span></div></div>
+            <div class="phone-row"><span class="phone-icon">3</span><div><b>Display control</b><span>Comfortable contrast</span></div></div>
+          </div>
+          <div class="phone-toolbar"><span>Home</span><span>Tabs</span><span>Files</span><span>More</span></div>
+        </div>
+      </div>
+      <p class="caption">ComicReader and display controls, built for one hand.</p>
     </div>
   </div>
 </section>
-<div class="strip"><ul><li>iOS 26.3.1+ / iPhone専用</li><li>片手UI</li><li>強制ダークモード</li><li>ComicReader</li><li>AltStore PAL</li></ul></div>
+<div class="strip"><ul><li>iOS 26.3.1+ / iPhone専用</li><li>片手UI</li><li>表示調整</li><li>ComicReader</li><li>AltStore PAL</li></ul></div>
 <section id="why">
   <div class="wrap">
     <p class="eyebrow">Why 4Me?</p>
-    <h2>Safariが悪いんじゃない。<br>夜の使い方に、合ってないだけ。</h2>
-    <p class="lede">大きいiPhone、白すぎるサイト、上にあるボタン、広告で重いページ。4Meは、その小さなストレスを夜用に作り直したブラウザです。</p>
+    <h2>Safariが悪いんじゃない。<br>片手で読むには、少し遠いだけ。</h2>
+    <p class="lede">大きいiPhone、上にあるボタン、広告で重いページ。4Meは、その小さなストレスを片手操作と読みやすさで整えるブラウザです。</p>
     <div class="pitch">
       <article class="pitch-card main">
         <img src="Imgs/paddingForOneHand.webp" alt="片手操作用のパディング">
         <div><span class="tag">MAIN FEATURE</span><h3>親指の届く場所に、全部置いた。</h3><p>戻る、進む、タブ、更新、検索。よく使う操作は画面下に集約。上端に指を伸ばしてスマホを落とす日々を終わらせます。</p></div>
       </article>
-      <article class="pitch-card"><img src="Imgs/forceDarkMode.webp" alt="強制ダークモード"><h3>白いサイトを、夜にする。</h3><p>強制ダークモードとDarkerトグルで、深夜の眩しさを抑えます。最低輝度でも眩しい人向け。</p></article>
+      <article class="pitch-card"><img src="Imgs/forceDarkMode.webp" alt="表示調整"><h3>読みやすい明るさに整える。</h3><p>サイトの眩しさやコントラストを抑えたいとき、表示をすばやく調整できます。</p></article>
       <article class="pitch-card"><img src="Imgs/comicReader.webp" alt="ComicReader"><h3>漫画サイトを、軽く読む。</h3><p>重いJavaScriptや広告に邪魔されず、画像ビューアのように読み進められるComicReaderを搭載。</p></article>
     </div>
   </div>
@@ -117,7 +129,7 @@ footer{padding:60px 0 40px;color:var(--muted);font-size:13px}.cols{display:flex;
     <div>
       <p class="eyebrow">ComicReader</p>
       <h2>広告だらけの漫画サイトを、<br>読むことに集中できる画面へ。</h2>
-      <p class="lede">4Meは「普通のブラウザ」ではなく、夜にメディアを見る人のための道具です。ComicReaderは、その中心機能のひとつ。</p>
+      <p class="lede">4Meは、画像中心のページを読みやすくするためのブラウザです。ComicReaderは、その中心機能のひとつ。</p>
       <ul class="checks"><li>画像中心のページを読みやすく表示</li><li>余計な広告・オーバーレイを減らす</li><li>発熱と重さを抑えた閲覧体験</li><li>片手操作のままページ移動</li></ul>
     </div>
     <div class="panel"><img src="Imgs/comicReader.webp" alt="ComicReader画面"></div>
@@ -126,22 +138,22 @@ footer{padding:60px 0 40px;color:var(--muted);font-size:13px}.cols{display:flex;
 <section id="features">
   <div class="wrap">
     <p class="eyebrow">More Features</p>
-    <h2>夜用ブラウザに、必要なものだけ。</h2>
-    <p class="lede">細かい機能は多いですが、目的はひとつ。ベッドの中でiPhoneを使う時間を、少し快適にすること。</p>
+    <h2>モバイル閲覧に、必要なものだけ。</h2>
+    <p class="lede">細かい機能は多いですが、目的はひとつ。iPhoneで読む時間を、少し快適にすること。</p>
     <div class="mini-grid">
       <article class="mini"><img src="Imgs/adCleaner.webp" alt="広告ブロッカー"><h3>広告ブロッカー</h3><p>CSSレベルで広告、ポップアップ、透明オーバーレイを軽減。</p></article>
       <article class="mini"><img src="Imgs/sts.webp" alt="SelectToSearch"><h3>SelectToSearch</h3><p>選択したテキストから、好きな検索テンプレートで検索。</p></article>
       <article class="mini"><img src="Imgs/reEncode.webp" alt="エンコード"><h3>変換ツール</h3><p>リサイズ、圧縮、ピッチ補正などをアプリ内で処理。</p></article>
       <article class="mini"><img src="Imgs/gesture.webp" alt="ジェスチャー"><h3>ジェスチャー操作</h3><p>戻る、進む、更新、新規タブを片手のまま操作。</p></article>
-      <article class="mini"><img src="Imgs/darkerToggle.webp" alt="Darker"><h3>Darkerトグル</h3><p>画面に暗いレイヤーを追加。下の🌙ボタンで体験できます。</p></article>
+      <article class="mini"><img src="Imgs/darkerToggle.webp" alt="表示調整"><h3>表示調整</h3><p>必要なときに画面の見え方を微調整。下のボタンで体験できます。</p></article>
     </div>
   </div>
 </section>
-<div class="free-band"><div class="wrap free-inner"><div><div class="lead">片手操作も、強制ダークも、<em>無料</em>。</div></div><a class="btn btn-moon" href="#install">まず入れてみる →</a></div></div>
+<div class="free-band"><div class="wrap free-inner"><div><div class="lead">片手操作も、ComicReaderも、<em>無料</em>。</div></div><a class="btn btn-moon" href="#install">まず入れてみる →</a></div></div>
 <section id="install" class="install">
   <div class="wrap">
     <p class="eyebrow">Installation</p>
-    <h2>App Storeには、ない。<br>でも、数分で入る。</h2>
+    <h2>AltStoreで、<br>数分で入る。</h2>
     <p class="lede">配布はAltStore経由。iPhone専用、iPad非対応、iOS 26.3.1以上。AltStoreが初めてでも、下の順番どおりでOK。</p>
     <div class="video-guide"><div><b>動画で入れ方を見る</b><span>AltStore PAL + 4Meの入れ方をYouTubeで確認できます。</span></div><a class="btn btn-ghost" href="https://youtu.be/Ki_rvmw0r2M" target="_blank" rel="noopener noreferrer">YouTubeで見る →</a></div>
     <div class="pal-card">
@@ -162,13 +174,13 @@ footer{padding:60px 0 40px;color:var(--muted);font-size:13px}.cols{display:flex;
   <div class="wrap" style="max-width:760px">
     <p class="eyebrow">FAQ</p>
     <h2>入れる前に、これだけ。</h2>
-    <details class="faq"><summary>無料で使える?</summary><p>使えます。片手操作、強制ダークモード、ComicReaderなどのコア機能はFreeプランで使えます。</p></details>
-    <details class="faq"><summary>なんでApp Storeにないの?</summary><p>一部機能がApp Storeの審査と相性が悪いため、AltStore経由で配布しています。</p></details>
+    <details class="faq"><summary>無料で使える?</summary><p>使えます。片手操作、表示調整、ComicReaderなどのコア機能はFreeプランで使えます。</p></details>
+    <details class="faq"><summary>配布方法は?</summary><p>AltStore経由で配布しています。上の手順どおりにソースを追加するとインストールできます。</p></details>
     <details class="faq"><summary>Android / Windows / Mac版は?</summary><p>現在はiPhoneのみです。将来的には検討するかもしれませんが、今はiPhone版に集中しています。</p></details>
   </div>
 </section>
-<footer><div class="wrap"><hr class="hr" style="margin-bottom:32px"><div class="cols"><div><div class="brand" style="margin-bottom:8px"><span class="moon-mark">🌙</span> 4Me</div><p>This software is proprietary.<br>無断複製・再配布を禁じます。</p></div><ul><li><a href="https://c0a2518617.github.io/4Me/PrivacyPolicy.md">プライバシーポリシー</a></li><li><a href="https://c0a2518617.github.io/4Me/TermsOfService.md">利用規約</a></li><li><a href="https://c0a2518617.github.io/4Me/License.md">ライセンス</a></li><li><a href="https://github.com/C0A2518617/4Me/releases">GitHub</a></li><li><a href="https://www.patreon.com/cw/4Me">Patreon</a></li></ul></div></div></footer>
-<nav class="thumb-bar" aria-label="ページ内ナビゲーション"><button type="button" class="tb-darker" aria-pressed="false" title="Darkerトグル" onclick="toggleDarker(this)">🌙</button><a href="#why">特徴</a><a href="#comic" class="tb-hide-sm">Comic</a><a href="#faq" class="tb-hide-sm">FAQ</a><a href="#install" class="tb-cta">入れる</a></nav>
+<footer><div class="wrap"><hr class="hr" style="margin-bottom:32px"><div class="cols"><div><div class="brand" style="margin-bottom:8px"><span class="moon-mark">●</span> 4Me</div><p>This software is proprietary.<br>無断複製・再配布を禁じます。</p></div><ul><li><a href="https://c0a2518617.github.io/4Me/PrivacyPolicy.md">プライバシーポリシー</a></li><li><a href="https://c0a2518617.github.io/4Me/TermsOfService.md">利用規約</a></li><li><a href="https://c0a2518617.github.io/4Me/License.md">ライセンス</a></li><li><a href="https://github.com/C0A2518617/4Me/releases">GitHub</a></li><li><a href="https://www.patreon.com/cw/4Me">Patreon</a></li></ul></div></div></footer>
+<nav class="thumb-bar" aria-label="ページ内ナビゲーション"><button type="button" class="tb-darker" aria-pressed="false" title="表示調整" onclick="toggleDarker(this)">表示</button><a href="#why">特徴</a><a href="#comic" class="tb-hide-sm">Comic</a><a href="#faq" class="tb-hide-sm">FAQ</a><a href="#install" class="tb-cta">入れる</a></nav>
 <script src="i18n.js"></script>
 <script>
 const LANGS=["ja","en","fr","de","zh"];
